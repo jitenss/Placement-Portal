@@ -15,5 +15,25 @@
   "bugs": {
     "url": "https://github.com/jitenss/Placement-Portal/issues"
   },
-  "homepage": "https://github.com/jitenss/Placement-Portal#readme"
+  "homepage": "https://github.com/jitenss/Placement-Portal#readme",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "*",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "handlebars-helper-equal": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "nodemon": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local-roles": "*",
+    "swig": "*",
+    "util": "*"
+  }
 }
