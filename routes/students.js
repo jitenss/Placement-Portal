@@ -7,7 +7,7 @@ router.post('/register',function(req,res){
 	var password = req.body.password;
 	var confirm_password = req.body.confirm_password;
 
-	console.log(rollno);
+	console.log(rollNo);
 });
 
 module.exports = router;
