@@ -63,7 +63,7 @@ Generated Using [json-generator.com](https://www.json-generator.com/)
 ### Developers 
  * **Shree Ram Bansal** [Linkedin](https://www.linkedin.com/in/shree-ram-b-a48786104/) [Facebook](https://www.facebook.com/shreeram.bansal)
  * **Jiten Singn Sadhwani** [Linkedin](https://www.linkedin.com/in/jiten-singh-sadhwani-1b109b10b/) [Facebook](https://www.facebook.com/sadhwani.jiten)
- * **Mudit Garg** [Linkedin](https://www.linkedin.com/in/mudit-garg-4a240b118/) [Facebook](https://www.facebook.com/mudit.garg.50)
+ * **Mudit Garg** [Linkedin](https://www.linkedin.com/in/mudit-garg8560/) [Facebook](https://www.facebook.com/mudit.garg.50)
  
 ### License
 This Project is under License.
