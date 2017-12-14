@@ -1,7 +1,7 @@
 # Placement-Portal
 Training and Placement Cell Portal
 
-##Get Started
+## Get Started
 This Project is designed and Developed for Training and Placement Cell, LNMIIT jaipur.Students can Register for company placement process through this portal.The Training and Placement officer can find or able to filter students according to company requirement.
 
 ### Prerequisites
