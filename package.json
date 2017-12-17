@@ -27,11 +27,13 @@
     "express-session": "*",
     "express-validator": "*",
     "handlebars-helper-equal": "*",
+    "md5": "^2.2.1",
     "mongodb": "*",
     "mongoose": "*",
     "nodemon": "*",
     "passport": "*",
     "passport-http": "*",
+    "passport-local": "^1.0.0",
     "passport-local-roles": "*",
     "swig": "*",
     "util": "*"

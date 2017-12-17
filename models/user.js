@@ -1,22 +1,25 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+//var bcrypt = require('bcryptjs');
+var md5 = require('md5');
 
-//Student Schema
-var StudentSchema = mongoose.Schema({
-	//_id: Schema.ObjectId,
-	rollno: {
-		type: String,
-		unique: true,
-		index: true
-	},
+//User Schema
+var UserSchema = mongoose.Schema({
 	email: {
-		type: String,
-		unique: true
+		type: String
+		//unique: true
+	},
+	rollno: {
+		type: String
+		//unique: true,
+		//index: true
 	},
 	password: {
 		type: String
+	}
+	/*user_level: {
+		type: String
 	},
-	/*name: String,
+	name: String,
 	branch: String,
 	gender: String,
 	date_of_birth: {
@@ -48,29 +51,25 @@ var StudentSchema = mongoose.Schema({
 	status: {
 		type: String,
 		default: registered						//active,registered,suspended
-	},
-	{discriminatorKey: 'user_type'}*/
+	}*/
 });
 
-var Student = module.exports = mongoose.model('Student', StudentSchema);
+var User = module.exports = mongoose.model('User', UserSchema);
 
-module.exports.createStudent = function(newStudent,callback){
-	bcrypt.genSalt(10, function(err, salt) {
-    	bcrypt.hash("newStudent.passowrd", salt, function(err, hash) {
-        	newStudent.passowrd = hash;
-        	newStudent.save(callback);
-    	});
-	});
+module.exports.createUser = function(newUser,callback){
+	newUser.password = md5(newUser.password);
+	console.log(newUser.password);
+	newUser.save(callback);
 }
 
 
-module.exports.getStudentByRollno = function(rollno,callback){
-	var query = {rollno: rollno};
-	Student.find(query,callback);
+module.exports.getUserByEmail = function(email,callback){
+	var query = {email: email};
+	User.find(query,callback);
 }
 
-module.exports.getStudentById = function(id,callback){
-	Student.findById(id,callback);
+module.exports.getUserById = function(id,callback){
+	User.findById(id,callback);
 }
 
 module.exports.comparePassword = function(password,hash,callback){

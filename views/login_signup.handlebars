@@ -17,33 +17,35 @@
     LOG IN
   </div>
   <div class="login-signup-content">
-    <div class="input-name">
-      <h2>Roll Number</h2>
 
-    </div>
-    <input type="text" name="rollno" value="" class="field-input" />
-    <div class="input-name input-margin">
-      <h2>Password</h2>
-
-    </div>
-    <input type="text" name="password" value="" class="field-input" />
-    <div class="input-r">
-
-
-      <div class="check-input">
-        <input type="checkbox" id="remember-me-2" name="rememberme" value="" class="checkme">
-        <label class="remmeberme-blue" for="remember-me-2"></label>
+    <form role="form" action="/users/login" method="post">
+      
+      <div class="input-name">
+        <h2>E-mail</h2>
       </div>
-      <div class="rememberme"><label for="remember-me-2">Remember Me</label></div>
-    </div>
-    <button class="submit-btn">
-          Enter
-        </button>
+      <input type="text" name="email" class="field-input" />
 
+      <div class="input-name input-margin">
+        <h2>Password</h2>
+      </div>
+      <input type="password" name="password" value="" class="field-input" />
 
-    <div class="forgot-pass">
-      <a href="#">Forgot Password?</a>
-    </div>
+      <div class="input-r">
+        <div class="check-input">
+          <input type="checkbox" id="remember-me-2" name="rememberme" value="" class="checkme">
+          <label class="remmeberme-blue" for="remember-me-2"></label>
+        </div>
+        <div class="rememberme"><label for="remember-me-2">Remember Me</label></div>
+      </div>
+      <button class="submit-btn">
+            Enter
+      </button>
+
+      <div class="forgot-pass">
+        <a href="#">Forgot Password?</a>
+      </div>
+
+    </form>
 
   </div>
 </div>
@@ -55,7 +57,7 @@
   </div>
   <div class="login-signup-content">
     
-    <form role="form" action="/register" method="post">
+    <form role="form" action="/users/register" method="post">
       
       <div class="input-name">
         <h2>Roll Number</h2>

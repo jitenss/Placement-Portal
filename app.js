@@ -11,13 +11,15 @@ var localStrategy = require('passport-local-roles').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
- mongoose.connect("mongodb://localhost:27017/placement-portal", {
+mongoose.Promise = global.Promise;
+
+mongoose.connect("mongodb://localhost:27017/placement-portal", {
    useMongoClient: true,
- });
+});
  var db = mongoose.connection;
 
-var routes = require('./routes/index');
-var students = require('./routes/students');
+var route = require('./routes/index');
+var user = require('./routes/users');
 
 //init app
 var app = express();
@@ -82,8 +84,8 @@ app.use(function (req, res, next) {
 });
 
 //Set routes
-app.use('/',routes);
-app.use('/students',students);
+app.use('/',route);
+app.use('/users',user);
 
 //Set Port
 app.set('port',(process.env.PORT || 3000));
