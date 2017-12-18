@@ -74,8 +74,14 @@ module.exports.getUserById = function(id,callback){
 }
 
 module.exports.comparePassword = function(password,database_password,callback){
-	if(password == md5(database_password) ){
+	console.log("Matching Password");
+	console.log(password + " " + database_password);
+	if(password == database_password ){
 		isMatch = true;
+		callback(null,isMatch);
+	}
+	else {
+		isMatch = false;
 		callback(null,isMatch);
 	}
 }

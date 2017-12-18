@@ -74,10 +74,12 @@ passport.use(new LocalStrategy({
 		}
 		else{
 			console.log("User Found :)");
-			if(User.comparePassword(password,user.password,function(err,user){
+			console.log(user[0].password);
+			if(User.comparePassword(md5(password),user[0].password,function(err,user){
 				if(err) throw err;
+				console.log(isMatch);
 				if(!isMatch){
-					console.log("Password Not Match :()");
+					console.log("Password Not Match :(");
 					return done(null,false,{message: 'Invalid Password'});
 				}
 				else{
@@ -102,7 +104,8 @@ passport.use(new LocalStrategy({
 
 //Serialization
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+	console.log(user);
+  done(null, user._id);
 });
 
 //Deserialization
@@ -114,7 +117,7 @@ passport.deserializeUser(function(id, done) {
 
 //login
 router.post('/login',
-  passport.authenticate('local',{successRedirect: '/users/dashboard', faliureRedirect: '/', failureFlash:true}),
+  passport.authenticate('local',{session:false,successRedirect: '/users/dashboard', faliureRedirect: '/', failureFlash:true}),
   function(req, res) {
 		res.redirect('/users/dashboard');
 });
