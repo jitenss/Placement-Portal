@@ -16,7 +16,11 @@ img { display:block;}
 body { background:#f3f4f5; font-family: 'Roboto', sans-serif; font-size:15px; line-height:20px; color:#333333;  font-weight: 300;}
 
 a{ text-decoration:none;}
-.brand-icon{ color:#ffffff; font-weight:bold;}
+.brand-icon{
+   color:#ffffff;
+   font-weight:bold;
+   font-size: 2em;
+ }
 
 .box-right{ float: right;}
 button, input[type="submit"]{
@@ -38,7 +42,14 @@ button, input[type="submit"]{
 #header{ position: fixed; height: 110px; width: 100%; left:0; top: 0; z-index: 10;}
 .header-topo{ background-color: #008658; height: 60px; position: relative;}
 
-#header .brand-icon{ position: absolute; top: 50%; right: 50%; width: 80px; height: 24px; margin: -12px -40px 0 0;}
+#header .brand-icon{
+  position: absolute;
+  top: 50%;
+  right: 40%;
+  width: Auto;
+  height: 24px;
+  margin: -12px -40px 0 0;
+}
 .header-controlMenuButton{ position: absolute; left: 200px; height: 60px; width: 60px; background-color: #00784f; text-align: center; cursor: pointer;}
 .header-controlMenuButton .spt{ display: inline-block;}
 .header-controlMenuButton:hover{ background-color: #005a3b;}
@@ -55,7 +66,7 @@ button, input[type="submit"]{
 #header .menu-modulos .menu-modulosBt:hover .menu-modulosFeed{ display: block;}
 #header .menu-modulos .menu-modulosBt:hover .menu-modulosBt-mainBt{ color: #333333;}
 
-.header-nomeEmpresa{  margin: 17px 0 0 20px; float: left; color: #ffffff; font-size: 20px; line-height: 25px; font-weight: 300;}
+.header-nomeEmpresa{  margin: 8px 0 0 20px; float: left; color: #ffffff; font-size: 20px; line-height: 25px; font-weight: 300;}
 .header-nomeEmpresa_mobile{ margin: 20px 0 0 5px; display: none;}
 
 .button-menu-mobile{ height: 80px; display: none; opacity: 0; cursor: pointer;}
@@ -92,6 +103,13 @@ button, input[type="submit"]{
     padding: 0;
     width: auto;
     white-space: nowrap;}
+.header-menu h1{
+  position: relative;
+  text-align: center;
+  font-size: 2em;
+  font-weight:400;
+  top: 30%;
+}
 .menu-box{overflow: auto; position: relative; height: 100%;}
 
 .menu-header{ position: absolute; z-index: 10; border-bottom: 1px solid #e4e5e6; width: 100%; background-color: #ffffff;
@@ -104,12 +122,21 @@ button, input[type="submit"]{
 .shape-remove-shadow_green{ position: absolute; background: #008658; height: 60px; width:10px; right: -3px; top: 0;}
 
 .menu-mobile-background{ opacity: 0; display: none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 100; background:rgba(0,0,0,.8);}
-
+#menu .menu-slider .menu .main-arrow{
+  position: relative;
+  margin-top: -12.5%;
+  right: 15%;
+}
+#menu .menu-slider .menu .submenu-arrow{
+  position: relative;
+  margin-top:6%;
+  left: 5%;
+}
 /*menu fechado*/
 
 /********/
 #conteudo{ width: 100%; position: relative;}
-#conteudo .conteudo-inner{ padding: 110px 0 0 260px;}
+#conteudo .conteudo-inner{ padding: 30px 0 0 260px;}
 #conteudo .conteudo-wrapper{ padding: 40px;}
 #conteudo .conteudo-box{ background-color: #ffffff; border-bottom: 1px solid #e4e5e6;
     -webkit-box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.1);
@@ -178,7 +205,11 @@ button, input[type="submit"]{
 .boxOptionsWrapper-content ul li a{ padding: 5px 20px; display: block; font-size: 14px;}
 
 @media screen and (max-width: 768px) {
-    #header .brand-icon{ right: 0; margin-right: 20px;}
+    #header .brand-icon{
+      right: 0;
+      margin-right:
+      20px;
+    }
     #header .menu-modulos .menu-modulosWrapper{ margin-left: 0 !important;  }
 
     #menu{ z-index: 999;}
@@ -785,6 +816,3 @@ button, input[type="submit"]{
 
 .col-xl-9-10{ width:90%;}
 }
-
-
-

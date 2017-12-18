@@ -32,7 +32,7 @@ var UserSchema = mongoose.Schema({
 	}],
 	spi:{
 		spi_1: Number,
-		spi_2: Number,	
+		spi_2: Number,
 		spi_3: Number,
 		spi_4: Number,
 		spi_5: Number,
@@ -64,6 +64,7 @@ module.exports.createUser = function(newUser,callback){
 
 
 module.exports.getUserByEmail = function(email,callback){
+	console.log("Finding User By Email");
 	var query = {email: email};
 	User.find(query,callback);
 }
@@ -72,9 +73,9 @@ module.exports.getUserById = function(id,callback){
 	User.findById(id,callback);
 }
 
-module.exports.comparePassword = function(password,hash,callback){
-	bcrypt.compare(password, hash, function(err, isMatch) {
-    	if(err) throw err;
-    	callback(null,isMatch);
-	});
+module.exports.comparePassword = function(password,database_password,callback){
+	if(password == md5(database_password) ){
+		isMatch = true;
+		callback(null,isMatch);
+	}
 }

@@ -2,13 +2,13 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Signup/Signin page idea (2/2)</title>
-  
-  
-  
+  <title>Signup/Signin</title>
+
+
+
       <link rel="stylesheet" href="/css/login_signup.css">
 
-  
+
 </head>
 
 <body>
@@ -19,11 +19,11 @@
   <div class="login-signup-content">
 
     <form role="form" action="/users/login" method="post">
-      
+
       <div class="input-name">
         <h2>E-mail</h2>
       </div>
-      <input type="text" name="email" class="field-input" />
+      <input type="email" name="email" class="field-input" />
 
       <div class="input-name input-margin">
         <h2>Password</h2>
@@ -56,14 +56,14 @@
     SIGN UP
   </div>
   <div class="login-signup-content">
-    
+
     <form role="form" action="/users/register" method="post">
-      
+
       <div class="input-name">
         <h2>Roll Number</h2>
       </div>
       <input type="text" name="rollno" class="field-input" />
-      
+
       <div class="input-name input-margin">
         <h2>E-Mail</h2>
       </div>
@@ -83,6 +83,9 @@
                 Enter
       </button>
 
+        {{#each errors}}
+          <p style="color:red;">*{{msg}}</p>
+        {{/each}}
     </form>
 
   </div>
