@@ -61,12 +61,12 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="menu-item"><a href="#">My Applications</a>
+                                    <div class="menu-item"><a href="/users/applications">My Applications</a>
 
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="menu-item"><a href="#" class="">Job Offers</a></div>
+                                    <div class="menu-item"><a href="/users/offers" class="">Job Offers</a></div>
                                 </li>
                                 <li>
                                     <div class="menu-item"><a href="#" class="menu-anchor" data-menu="4">Profile</a>
@@ -74,7 +74,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="menu-item"><a href="#" class="">About Us</a></div>
+                                    <div class="menu-item"><a href="/users/aboutUs" class="">About Us</a></div>
                                 </li>
                             </ul>
                         </div>
@@ -89,10 +89,10 @@
                             </div>
                             <ul>
                                 <li>
-                                    <div class="menu-item"><a href="#">Opportunities For Me</a></div>
+                                    <div class="menu-item"><a href="/users/opportunitiesForMe">Opportunities For Me</a></div>
                                 </li>
                                 <li>
-                                    <div class="menu-item"><a href="#">Opportunities For All</a></div>
+                                    <div class="menu-item"><a href="/users/opportunitiesForAll">Opportunities For All</a></div>
                                 </li>
                             </ul>
                         </div>
@@ -140,16 +140,7 @@
     <div id="conteudo">
         <div class="conteudo-inner">
             <div class="conteudo-wrapper">
-                <div class="conteudo-titleSection">
-                    <strong class="conteudo-title">Title section</strong>
-                    <!-- <div class="breadcrumb">
-                        <a href="#" class="breadcrumb-link">Bread</a>
-                        <span class="breadcrumb-separator">.</span>
-                        <a href="#" class="breadcrumb-link">Bread 2</a>
-                        <span class="breadcrumb-separator">.</span>
-                        <a href="#" class="breadcrumb-link breadcrumb-link_ativo">Active Section</a>
-                    </div> -->
-                </div>
+
                 {{#if success_msg}}
                     <div class="alert alert-success">{{success_msg}}</div>
                 {{/if}}
@@ -162,8 +153,6 @@
                     <div class="alert alert-danger">{{error}}</div>
                {{/if}}
                 {{{body}}}
-
-
             </div>
         </div>
     </div>

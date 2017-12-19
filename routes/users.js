@@ -132,6 +132,34 @@ router.get('/academic', function(req, res){
 	res.render('studentAcademicProfile');
 });
 
+//About US Profile
+router.get('/aboutUs', function(req, res){
+	console.log("On About Us Page");
+	res.render('aboutUs');
+});
+
+//opportunities for me Profile
+router.get('/opportunitiesForMe', function(req, res){
+	console.log("On opportunities For Me");
+	res.render('opportunitiesForMe');
+});
+
+//opportunities for all Profile
+router.get('/opportunitiesForAll', function(req, res){
+	console.log("On opportunities For All");
+	res.render('opportunitiesForall');
+});
+
+//opportunities for all Profile
+router.get('/applications', function(req, res){
+	console.log("On Aplications page");
+	res.render('applications');
+});
+//opportunities for all Profile
+router.get('/offers', function(req, res){
+	console.log("On Job offers Page");
+	res.render('offers');
+});
 //Dashboard
 router.get('/dashboard',function(req,res){
 	console.log('dashboard');
