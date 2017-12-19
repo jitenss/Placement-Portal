@@ -75,7 +75,7 @@ passport.use(new LocalStrategy({
 		else{
 			console.log("User Found :)");
 			console.log(user.password);
-			if(User.comparePassword(md5(password),user.password,function(err,isMatch){
+			if(User.comparePassword(md5(password),user.password,function(err,user){
 				if(err) throw err;
 				console.log(isMatch);
 				if(!isMatch){
@@ -89,6 +89,15 @@ passport.use(new LocalStrategy({
 			}));
 
 		}
+			// else if(){
+			// 	return done(null,user);
+			// }
+			// else{
+			// 	return done(null,false,{message: 'Invalid Password'});
+			// }
+		// User.comparePassword(password,md5(user.password),function(err,user){
+		//
+		// })
 	});
 	}
 ));
@@ -112,45 +121,8 @@ router.post('/login',
   function(req, res) {
 		res.redirect('/users/dashboard');
 });
-//peronal Profile
-router.get('/personal', function(req, res){
-	console.log("On personal Profile");
-	res.render('studentPersonalProfile');
-});
-//Academic Profile
-router.get('/academic', function(req, res){
-	console.log("On Academic Profile");
-	res.render('studentAcademicProfile');
-});
 
-//About US Profile
-router.get('/aboutUs', function(req, res){
-	console.log("On About Us Page");
-	res.render('aboutUs');
-});
 
-//opportunities for me Profile
-router.get('/opportunitiesForMe', function(req, res){
-	console.log("On opportunities For Me");
-	res.render('opportunitiesForMe');
-});
-
-//opportunities for all Profile
-router.get('/opportunitiesForAll', function(req, res){
-	console.log("On opportunities For All");
-	res.render('opportunitiesForall');
-});
-
-//opportunities for all Profile
-router.get('/applications', function(req, res){
-	console.log("On Aplications page");
-	res.render('applications');
-});
-//opportunities for all Profile
-router.get('/offers', function(req, res){
-	console.log("On Job offers Page");
-	res.render('offers');
-});
 //Dashboard
 router.get('/dashboard',function(req,res){
 	console.log('dashboard');
