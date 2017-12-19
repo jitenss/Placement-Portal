@@ -104,10 +104,10 @@
                             </div>
                             <ul>
                                 <li>
-                                    <div class="menu-item"><a href="#">Personal</a></div>
+                                    <div class="menu-item"><a href="/users/personal">Personal</a></div>
                                 </li>
                                 <li>
-                                    <div class="menu-item"><a href="#">Academic</a></div>
+                                    <div class="menu-item"><a href="/users/academic">Academic</a></div>
                                 </li>
                             </ul>
                         </div>
@@ -150,7 +150,17 @@
                         <a href="#" class="breadcrumb-link breadcrumb-link_ativo">Active Section</a>
                     </div> -->
                 </div>
+                {{#if success_msg}}
+                    <div class="alert alert-success">{{success_msg}}</div>
+                {{/if}}
 
+                {{#if error_msg}}
+                    <div class="alert alert-danger">{{error_msg}}</div>
+                {{/if}}
+
+                {{#if error}}
+                    <div class="alert alert-danger">{{error}}</div>
+               {{/if}}
                 {{{body}}}
 
 

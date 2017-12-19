@@ -121,7 +121,16 @@ router.post('/login',
   function(req, res) {
 		res.redirect('/users/dashboard');
 });
-
+//peronal Profile
+router.get('/personal', function(req, res){
+	console.log("On personal Profile");
+	res.render('studentPersonalProfile');
+});
+//Academic Profile
+router.get('/academic', function(req, res){
+	console.log("On Academic Profile");
+	res.render('studentAcademicProfile');
+});
 
 //Dashboard
 router.get('/dashboard',function(req,res){
