@@ -15,8 +15,8 @@ var UserSchema = mongoose.Schema({
 	},
 	password: {
 		type: String
-	}
-	/*user_level: {
+	},
+	user_level: {
 		type: String
 	},
 	name: String,
@@ -50,8 +50,8 @@ var UserSchema = mongoose.Schema({
 	//resume: [],
 	status: {
 		type: String,
-		default: registered						//active,registered,suspended
-	}*/
+		default: 'registered'						//active,registered,suspended
+	}
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);
@@ -66,7 +66,7 @@ module.exports.createUser = function(newUser,callback){
 module.exports.getUserByEmail = function(email,callback){
 	console.log("Finding User By Email");
 	var query = {email: email};
-	User.find(query,callback);
+	User.findOne(query,callback);
 }
 
 module.exports.getUserById = function(id,callback){

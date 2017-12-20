@@ -13,12 +13,14 @@ function ensureAuthenticated(req,res,next){
 	}
 	else
 	{
+		req.flash('error_msg','You are not logged in');
 		res.redirect('/');
 	}
 }
 
 //Register user
 router.post('/register',function(req,res){
+	var name = req.body.name;
 	var rollno = req.body.rollno;
 	var email = req.body.email;
 	var password = req.body.password;
@@ -26,6 +28,7 @@ router.post('/register',function(req,res){
 	//var user_level = req.body.user_level;
 
 	//Validation
+	req.checkBody('name','Name is required').notEmpty();
 	req.checkBody('rollno','Roll Number is required').notEmpty();
 	req.checkBody('email','Email is required').notEmpty();
 	req.checkBody('email','Email is not valid').isEmail();
@@ -35,26 +38,37 @@ router.post('/register',function(req,res){
 	var errors = req.validationErrors();
 
 	if(errors){
-		res.render('login_signup',{
-			errors: errors
-		});
+		req.flash('error',errors);
+		res.redirect('/');
+
 		console.log(errors);
 	}
 	else{
-		var newUser = new User({
-			rollno: rollno,
-			email: email,
-			password: password
-		});
-
-		User.createUser(newUser,function(err,user){
+		User.getUserByEmail(email, function(err, user){
 			if(err) throw err;
-			console.log(user);
+			if(user){
+				console.log(user);
+				console.log("user already Exist");
+				req.flash('error_msg', 'The Email Id is already registered');
+				res.redirect('/');
+			}
+			else {
+				var newUser = new User({
+					name: name,
+					rollno: rollno,
+					email: email,
+					password: password
+				});
+
+				User.createUser(newUser,function(err,user){
+					if(err) throw err;
+					console.log(user);
+				});
+				console.log('registered');
+				req.flash('success_msg','Registration Successfull: Now you can login to your account');
+				res.redirect('/');
+			}
 		});
-
-		console.log('registered');
-
-		res.redirect('/');
 	}
 });
 
@@ -74,8 +88,8 @@ passport.use(new LocalStrategy({
 		}
 		else{
 			console.log("User Found :)");
-			console.log(user[0].password);
-			if(User.comparePassword(md5(password),user[0].password,function(err,user){
+			console.log(user.password);
+			if(User.comparePassword(md5(password),user.password,function(err,isMatch){
 				if(err) throw err;
 				console.log(isMatch);
 				if(!isMatch){
@@ -105,7 +119,7 @@ passport.use(new LocalStrategy({
 //Serialization
 passport.serializeUser(function(user, done) {
 	console.log(user);
-  done(null, user._id);
+  done(null, user.id);
 });
 
 //Deserialization
@@ -114,20 +128,25 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
-
+//logout
+router.get('/logout', function(req, res){
+	req.logout();
+	req.flash('success_msg', 'You are logged out');
+	res.redirect('/');
+});
 //login
 router.post('/login',
-  passport.authenticate('local',{session:false,successRedirect: '/users/dashboard', faliureRedirect: '/', failureFlash:true}),
+  passport.authenticate('local',{session:true,successRedirect: '/users/dashboard', faliureRedirect: '/', failureFlash:true}),
   function(req, res) {
 		res.redirect('/users/dashboard');
 });
 //peronal Profile
-router.get('/personal', function(req, res){
+router.get('/personal',ensureAuthenticated, function(req, res){
 	console.log("On personal Profile");
 	res.render('studentPersonalProfile');
 });
 //Academic Profile
-router.get('/academic', function(req, res){
+router.get('/academic',ensureAuthenticated, function(req, res){
 	console.log("On Academic Profile");
 	res.render('studentAcademicProfile');
 });

@@ -338,3 +338,22 @@ div.rememberme {
 #login {
   transform: translateX(-160px);
 }
+
+.alertMsg{
+  position: relative;
+  width: 90%;
+  text-align: center;
+  padding: 20px;
+  margin: 20px auto;
+  background-color: #FF5722;
+  color: white;
+  font-weight: bold;
+}
+.success{
+    color: #447C44;
+    background-color: #DFF0D8;
+}
+.danger{
+    color: #A94442;
+    background-color: #F2DEDE;
+}
