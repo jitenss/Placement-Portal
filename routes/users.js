@@ -103,15 +103,6 @@ passport.use(new LocalStrategy({
 			}));
 
 		}
-			// else if(){
-			// 	return done(null,user);
-			// }
-			// else{
-			// 	return done(null,false,{message: 'Invalid Password'});
-			// }
-		// User.comparePassword(password,md5(user.password),function(err,user){
-		//
-		// })
 	});
 	}
 ));

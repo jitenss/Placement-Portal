@@ -5,8 +5,8 @@ var md5 = require('md5');
 //User Schema
 var UserSchema = mongoose.Schema({
 	email: {
-		type: String
-		//unique: true
+		type: String,
+		unique: true
 	},
 	rollno: {
 		type: String
@@ -17,7 +17,8 @@ var UserSchema = mongoose.Schema({
 		type: String
 	},
 	user_level: {
-		type: String
+		type: String,
+		default:'student'
 	},
 	name: String,
 	branch: String,
@@ -26,10 +27,10 @@ var UserSchema = mongoose.Schema({
 		type: Date,
 		default: Date.now
 	},
-	phone_no: [{
+	phone_no: {
 		phone_no1: Number,
 		phone_no2: Number
-	}],
+	},
 	spi:{
 		spi_1: Number,
 		spi_2: Number,
@@ -50,7 +51,7 @@ var UserSchema = mongoose.Schema({
 	//resume: [],
 	status: {
 		type: String,
-		default: 'registered'						//active,registered,suspended
+		default: 'registered'					//active,registered,suspended
 	}
 });
 
@@ -76,6 +77,7 @@ module.exports.getUserById = function(id,callback){
 module.exports.comparePassword = function(password,database_password,callback){
 	console.log("Matching Password");
 	console.log(password + " " + database_password);
+	var isMatch;
 	if(password == database_password ){
 		isMatch = true;
 	}
