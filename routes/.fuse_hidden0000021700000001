@@ -13,14 +13,12 @@ function ensureAuthenticated(req,res,next){
 	}
 	else
 	{
-		req.flash('error_msg','You are not logged in');
 		res.redirect('/');
 	}
 }
 
 //Register user
 router.post('/register',function(req,res){
-	var name = req.body.name;
 	var rollno = req.body.rollno;
 	var email = req.body.email;
 	var password = req.body.password;
@@ -28,7 +26,6 @@ router.post('/register',function(req,res){
 	//var user_level = req.body.user_level;
 
 	//Validation
-	req.checkBody('name','Name is required').notEmpty();
 	req.checkBody('rollno','Roll Number is required').notEmpty();
 	req.checkBody('email','Email is required').notEmpty();
 	req.checkBody('email','Email is not valid').isEmail();
@@ -38,37 +35,26 @@ router.post('/register',function(req,res){
 	var errors = req.validationErrors();
 
 	if(errors){
-		req.flash('error',errors);
-		res.redirect('/');
-
+		res.render('login_signup',{
+			errors: errors
+		});
 		console.log(errors);
 	}
 	else{
-		User.getUserByEmail(email, function(err, user){
-			if(err) throw err;
-			if(user){
-				console.log(user);
-				console.log("user already Exist");
-				req.flash('error_msg', 'The Email Id is already registered');
-				res.redirect('/');
-			}
-			else {
-				var newUser = new User({
-					name: name,
-					rollno: rollno,
-					email: email,
-					password: password
-				});
-
-				User.createUser(newUser,function(err,user){
-					if(err) throw err;
-					console.log(user);
-				});
-				console.log('registered');
-				req.flash('success_msg','Registration Successfull: Now you can login to your account');
-				res.redirect('/');
-			}
+		var newUser = new User({
+			rollno: rollno,
+			email: email,
+			password: password
 		});
+
+		User.createUser(newUser,function(err,user){
+			if(err) throw err;
+			console.log(user);
+		});
+
+		console.log('registered');
+
+		res.redirect('/');
 	}
 });
 
@@ -110,7 +96,7 @@ passport.use(new LocalStrategy({
 //Serialization
 passport.serializeUser(function(user, done) {
 	console.log(user);
-  done(null, user.id);
+  done(null, user._id);
 });
 
 //Deserialization
@@ -120,67 +106,22 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-//logout
-router.get('/logout', function(req, res){
-	req.logout();
-	req.flash('success_msg', 'You are logged out');
-	res.redirect('/');
-});
-
 //login
 router.post('/login',
-  passport.authenticate('local',{session:true,successRedirect: '/users/dashboard', faliureRedirect: '/', failureFlash:true}),
+  passport.authenticate('local',{session:false,successRedirect: '/users/dashboard', faliureRedirect: '/', failureFlash:true}),
   function(req, res) {
 		res.redirect('/users/dashboard');
 });
-
 //peronal Profile
-router.get('/personal',ensureAuthenticated, function(req, res){
+router.get('/personal', function(req, res){
 	console.log("On personal Profile");
 	res.render('studentPersonalProfile');
 });
-
-//Submit Personal Profile
-router.post('/submit_personal',ensureAuthenticated,function(req,res){
-	var fullname = req.body.fullname;
-	var gender = req.body.gender;
-	var dob = req.body.dob;
-	var mob1 = req.body.mob1;
-	var mob2 = req.body.mob2;
-
-	var currUser = req.user;
-
-	User.updateUsersPersonalProfile(currUser,fullname,gender,dob,mob1,mob2,function(err,user){
-		if(err) throw err;
-		console.log(req.user);
-
-		res.redirect('/users/academic');
-	});
-})
-
 //Academic Profile
-router.get('/academic',ensureAuthenticated, function(req, res){
+router.get('/academic', function(req, res){
 	console.log("On Academic Profile");
 	res.render('studentAcademicProfile');
 });
-
-//Submit academic profile
-/*router.post('/submit_personal',ensureAuthenticated, function(req,res){
-	var branch = req.body.branch;
-	var precent_10 = req.body.precent_10;
-	var precent_12 = req.body.precent_12;
-	var spi_1 = req.body.spi_1;
-	var spi_2 = req.body.spi_2;
-	var spi_3 = req.body.spi_3;
-	var spi_4 = req.body.spi_4;
-	var spi_5 = req.body.spi_5;
-	var spi_6 = req.body.spi_6;
-	var spi_7 = req.body.spi_7;
-	var spi_8 = req.body.spi_8;
-	var cpi = req.body.cpi;
-	var skills = req.body.skills;
-	var
-});*/
 
 //About US Profile
 router.get('/aboutUs', function(req, res){
