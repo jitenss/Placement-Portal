@@ -165,7 +165,7 @@ router.get('/academic',ensureAuthenticated, function(req, res){
 });
 
 //Submit academic profile
-/*router.post('/submit_personal',ensureAuthenticated, function(req,res){
+router.post('/submit_personal',ensureAuthenticated, function(req,res){
 	var branch = req.body.branch;
 	var precent_10 = req.body.precent_10;
 	var precent_12 = req.body.precent_12;
@@ -179,8 +179,10 @@ router.get('/academic',ensureAuthenticated, function(req, res){
 	var spi_8 = req.body.spi_8;
 	var cpi = req.body.cpi;
 	var skills = req.body.skills;
-	var
-});*/
+	var file = ;
+
+	
+});
 
 //About US Profile
 router.get('/aboutUs', function(req, res){
