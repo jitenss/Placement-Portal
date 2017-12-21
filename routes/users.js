@@ -129,9 +129,9 @@ router.get('/logout', function(req, res){
 
 //login
 router.post('/login',
-  passport.authenticate('local',{session:true,successRedirect: '/users/dashboard', faliureRedirect: '/', failureFlash:true}),
+  passport.authenticate('local',{session:true, faliureRedirect: '/', failureFlash:true}),
   function(req, res) {
-		res.redirect('/users/dashboard');
+			res.redirect('/users/dashboard');
 });
 
 //peronal Profile
@@ -154,7 +154,8 @@ router.post('/submit_personal',ensureAuthenticated,function(req,res){
 		if(err) throw err;
 		console.log(req.user);
 
-		res.redirect('/users/academic');
+		req.flash('success_msg', 'Profile Updated');
+		res.redirect('/users/personal');
 	});
 })
 
@@ -213,7 +214,14 @@ router.get('/offers', function(req, res){
 //Dashboard
 router.get('/dashboard',function(req,res){
 	console.log('dashboard');
-	res.render('student_dashboard');
+	if(req.user.user_level=="student"){
+		console.log("Logged In As Student");
+		res.render('student_dashboard');
+	}
+	else if(req.user.user_level=="admin"){
+		console.log("Logged In As Admin");
+		res.render('admin_dashboard', {layout: 'layoutb.handlebars'});
+	}
 });
 
 module.exports = router;
