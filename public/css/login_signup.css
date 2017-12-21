@@ -154,7 +154,7 @@ button {
   width: 300px;
   background-color: #E2E2E2;
   position: relative;
-  margin: 0 auto;
+  margin: 0 400px;
   margin-top: 100px;
 }
 
@@ -280,6 +280,7 @@ div.rememberme {
 
 .submit-btn:hover {
   background-color: #F4511E;
+  cursor: pointer;
 }
 
 .forgot-pass {
@@ -301,7 +302,7 @@ div.rememberme {
 }
 
 .s-atbottom {
-  transform: translate3d(100px, -506.5px, 0);
+  transform: translate3d(300px, -506.5px, 0);
   z-index: 0;
   -webkit-filter: blur(1px);
   filter: blur(1px);
@@ -309,7 +310,7 @@ div.rememberme {
 }
 
 .s-attop {
-  transform: translate3d(100px, -506.5px, 0);
+  transform: translate3d(300px, -506.5px, 0);
   aha z-index: 1;
   -webkit-filter: blur(0);
   filter: blur(0);
