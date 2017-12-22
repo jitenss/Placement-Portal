@@ -211,6 +211,11 @@ router.get('/offers', function(req, res){
 	console.log("On Job offers Page");
 	res.render('offers');
 });
+//Plaacement
+router.get('/placement', function(req, res){
+	console.log("On placement offers Page");
+	res.render('placement');
+});
 //Dashboard
 router.get('/dashboard',function(req,res){
 	console.log('dashboard');
