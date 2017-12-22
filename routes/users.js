@@ -212,9 +212,24 @@ router.get('/offers', function(req, res){
 	res.render('offers');
 });
 //Plaacement
-router.get('/placement', function(req, res){
+router.get('/placements', function(req, res){
 	console.log("On placement offers Page");
-	res.render('placement');
+	res.render('placements',{layout:'layoutb.handlebars'});
+});
+//Students
+router.get('/Students', function(req, res){
+	console.log("On Students page");
+	res.render('Students',{layout:'layoutb.handlebars'});
+});
+//jobOffers
+router.get('/JobOffers', function(req, res){
+	console.log("On JobOffers page");
+	res.render('JobOffers',{layout:'layoutb.handlebars'});
+});
+//InternshipOffers
+router.get('/internOffers', function(req, res){
+	console.log("On internOffers page");
+	res.render('InternshipOffers',{layout:'layoutb.handlebars'});
 });
 //Dashboard
 router.get('/dashboard',function(req,res){
