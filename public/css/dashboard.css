@@ -274,6 +274,7 @@ button:hover {
 .ui-menu .ui-menu-item{
     padding:5px;
     font-size: 14px;
+
 }
 .relative{
     position: relative;
@@ -428,9 +429,19 @@ button:hover {
 #menu .menu-wrapper-inner{ padding-top: 110px;}
 #menu .menu-wrapper{ position: relative; overflow-x: hidden;}
 #menu .menu{ width: 260px; float: left;}
-#menu .menu-item{ position: relative;}
+#menu .menu-item{ position: relative; color: #fff; }
 #menu .menu-item:hover{ background-color: #fafafa;}
-#menu .menu-item a{  padding: 15px 30px;font-size: 14px; line-height: 18px; font-weight: normal; color: #333333; display: block;}
+#menu .menu-item a{
+  padding: 15px 30px;
+  font-size: 1em;
+  line-height: 18px;
+  font-weight: normal;
+  color:#fff;
+  display: block;
+}
+#menu .menu-item:hover a{
+  color: black;
+}
 #menu .menu-item .spt{ position: absolute; right: 25px; top: 50%; margin-top: -5px;}
 #menu .menu-slider{ position: relative; width: 2000px; left:0;}
 #menu .submenu{ display: none;}
