@@ -20,7 +20,7 @@
     <div class="menu-mobile-background "></div>
     <div id="header">
         <div class="header-inner">
-            <div class="header-topo">
+            <div class="header-topo header-topo-back">
                 <button class="button-menu-mobile ">
                     <div class="box-stripes">
                         <span class="stripe-top"></span>
@@ -29,16 +29,37 @@
                     </div>
                 </button>
                 <span class="header-nomeEmpresa header-nomeEmpresa_mobile col-xs-show col-sm-show">Dashboard</span>
-                <a href="#" class="brand-icon">Training And Placement Cell, LNMIIT</a>
+                <a href="#" class="brand-icon hidden-xs">Training And Placement Cell, LNMIIT</a>
+                <div id="dropdown" class="ddmenu">
+                    <i class="fa fa-user">&nbsp;&nbsp;</i>User Settings
+                    <ul>
+                      <li><a href="#">My Profile</a></li>
+                      <li><a href="#">Change Passwords</a></li>
+                      <li><a href="#">Support</a></li>
+                      <li><a href="#">About Us</a></li>
+                      <li><a href="#">Log Out</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+      $("#dropdown").on("click", function(e){
+        e.preventDefault();
+
+        if($(this).hasClass("open")) {
+          $(this).removeClass("open");
+          $(this).children("ul").slideUp("fast");
+        } else {
+          $(this).addClass("open");
+          $(this).children("ul").slideDown("fast");
+        }
+      });
+    </script>
     <div id="menu" class="">
         <div class="menu-header">
-            <span class="shape-remove-shadow_green"></span>
-            <span class="shape-remove-shadow_white"></span>
             <div class="header-topo">
-                <div class="header-controlMenu  col-sm-hide col-xs-hide">
+                <div class="header-controlMenu">
                     <span class="header-nomeEmpresa">
                       <img src="/images/logo.gif" alt="LNMIIT" height="40px" width="Auto">
                     </span>
@@ -48,7 +69,6 @@
             </div>
             <div class="header-menu">
                 <h1>Dashboard</h1>
-                <p>Hello {{user.email}}</p>
             </div>
         </div>
         <div class="menu-box">
