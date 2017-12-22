@@ -224,4 +224,10 @@ router.get('/dashboard',function(req,res){
 	}
 });
 
+//-------------Categories
+router.get('/categories', function(req, res){
+	console.log("On Categories Page Page");
+	res.render('categories', {layout:'layoutb.handlebars'});
+});
+
 module.exports = router;
