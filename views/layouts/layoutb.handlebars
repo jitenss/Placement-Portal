@@ -20,7 +20,7 @@
     <div class="menu-mobile-background "></div>
     <div id="header">
         <div class="header-inner">
-            <div class="header-topo">
+            <div class="header-topo header-topo-back">
                 <button class="button-menu-mobile ">
                     <div class="box-stripes">
                         <span class="stripe-top"></span>
@@ -43,10 +43,21 @@
             </div>
         </div>
     </div>
+    <script>
+      $("#dropdown").on("click", function(e){
+        e.preventDefault();
+
+        if($(this).hasClass("open")) {
+          $(this).removeClass("open");
+          $(this).children("ul").slideUp("fast");
+        } else {
+          $(this).addClass("open");
+          $(this).children("ul").slideDown("fast");
+        }
+      });
+    </script>
     <div id="menu" class="">
         <div class="menu-header">
-            <span class="shape-remove-shadow_green"></span>
-            <span class="shape-remove-shadow_white"></span>
             <div class="header-topo">
                 <div class="header-controlMenu  col-sm-hide col-xs-hide">
                     <span class="header-nomeEmpresa">
@@ -58,7 +69,6 @@
             </div>
             <div class="header-menu">
                 <h1>Dashboard</h1>
-                <p>Hello {{user.email}}</p>
             </div>
         </div>
         <div class="menu-box">
