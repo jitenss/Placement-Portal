@@ -98,3 +98,9 @@ module.exports.updateUsersPersonalProfile = function(currUser,fullname,gender,do
 		}};
 	User.update(query,updatedDetails,callback);
 }
+module.exports.updateUsersPasword = function(user_email,newpasshsh,callback){
+	var query = {email:user_email};
+	var updatedDetails = {password:newpasshsh
+		};
+	User.update(query,updatedDetails,callback);
+}
