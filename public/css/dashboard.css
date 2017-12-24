@@ -34,13 +34,27 @@ button, input[type="submit"]{
     -moz-border-radius: 0;
 }
 
-.header-controlMenuButton svg{ fill:#ffffff;}
-
 #hit-menu{ position: fixed; left: 0; top: 0; z-index: 10000; width: 20px; height: 100%; background-color: transparent; display: none;}
 
 /*HEADER*/
-#header{ position: fixed; height: 110px; width: 100%; left:0; top: 0; z-index: 10;}
-.header-topo{ background-color: #008658; height: 60px; position: relative;}
+#header{
+  position: fixed; height: 110px;
+  width: 100%;
+  left:0;
+  top: 0;
+  z-index: 10;
+}
+.header-topo{
+  background-color:;
+  height: 60px;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.header-topo-back{
+  background: linear-gradient(45deg,#0c93cf 0,#00a980 97%);
+
+}
 
 #header .brand-icon{
   position: absolute;
@@ -50,13 +64,33 @@ button, input[type="submit"]{
   height: 24px;
   margin: -12px -40px 0 0;
 }
-.header-controlMenuButton{ position: absolute; left: 200px; height: 60px; width: 60px; background-color: #00784f; text-align: center; cursor: pointer;}
+.header-controlMenuButton{
+  position: absolute;
+  left: 200px;
+  height: 60px;
+  width: 60px;
+  background-color: #00784f;
+  text-align: center;
+  cursor: pointer;
+}
 .header-controlMenuButton .spt{ display: inline-block;}
 .header-controlMenuButton:hover{ background-color: #005a3b;}
 .header-search{ width: 260px; float: left; position: absolute; left: 0;}
 .header-search .spt{ float: left; margin: 15px 25px 0 17px;}
 .header-search input{ float: left;font-family: 'Roboto', sans-serif; color: #9a9a9a; font-size: 14px; margin-top: 15px; border: none;}
-.header-menu{ height: 30px;}
+.header-menu{
+  position: relative;
+  padding:5px 0;
+  height: 40px;
+  background-color: #ff5722;
+  margin: 5px;
+}
+.header-menu h1{
+  color: #fff;
+  position: relative;
+  top:14%;
+  font-weight: bold;
+}
 #header .menu-modulos{ float: left; width: 100%; height: 50px;}
 #header .menu-modulos .menu-modulosInner{ padding: 0 120px 0 280px;}
 #header .menu-modulos .menu-modulosWrapper{ overflow-x: scroll;}
@@ -66,12 +100,26 @@ button, input[type="submit"]{
 #header .menu-modulos .menu-modulosBt:hover .menu-modulosFeed{ display: block;}
 #header .menu-modulos .menu-modulosBt:hover .menu-modulosBt-mainBt{ color: #333333;}
 
-.header-nomeEmpresa{  margin: 8px 0 0 20px; float: left; color: #ffffff; font-size: 20px; line-height: 25px; font-weight: 300;}
+.header-nomeEmpresa{
+  position: relative;
+  width: 60%;
+  margin: 8px 20%;
+  float: left;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 300;
+}
 .header-nomeEmpresa_mobile{ margin: 20px 0 0 5px; display: none;}
 
-.button-menu-mobile{ height: 80px; display: none; opacity: 0; cursor: pointer;}
-.button-menu-mobile{ height: 60px;float: left; width: 40px; margin-left: 10px; display: none;}
-.button-menu-mobile .box-stripes{ position: relative; width: 20px;}
+.button-menu-mobile{
+  height: 80px;
+  display: none;
+  opacity: 0;
+  cursor: pointer;
+}
+.button-menu-mobile{ height: 60px;float: left; width: 40px; margin-left: 10px; display: none; text-align: center;}
+.button-menu-mobile .box-stripes{ position: relative; width: 20px; right:10px;}
 .button-menu-mobile span{ position: absolute; width: 100%; background-color: #ffffff; height: 2px; top: 0;}
 #header .stripe-top{ margin-top: -6px;}
 #header .stripe-bottom{ margin-top: 6px;}
@@ -81,7 +129,65 @@ button, input[type="submit"]{
     -moz-box-shadow:    0px 2px 2px 0px rgba(50, 50, 50, 0.1);
     box-shadow:         0px 2px 2px 0px rgba(50, 50, 50, 0.1);}
 
+/*-------------Profile DropDown Menu-----------------*/
+#dropdown {
+  display: block;
+  padding: 13px 16px;
+  text-align: center;
+  width: 150px;
+  margin: 0 auto;
+  margin-right: 1%;
+  position: relative;
+  cursor: pointer;
+  border-left: none;
+  background: #ff5722;
+  top:10%;
+  font-size: 1em;
+  color: #FFF;
+  font-weight: normal;
+  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -ms-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+}
+#dropdown:hover { color: #898989; }
 
+#dropdown.open {
+  background: linear-gradient(45deg,#0c93cf 0,#00a980 97%);
+  color: #fff;
+  border-left-color: #6c6d70;
+}
+
+#dropdown ul {
+  position: relative;
+  top: 102%;
+  left: -4px; /* move content -4px because of container left border */
+  width:;
+  padding: 5px 0px;
+  display: none;
+  font-size: .8em;
+  border-left: 4px solid #8e9196;
+  background: #fff;
+  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+#dropdown ul li { font-size: 0.9em; }
+
+#dropdown ul li a {
+  text-decoration: none;
+  display: block;
+  color: #447dd3;
+  padding: 7px 15px;
+}
+#dropdown ul li a:hover {
+  color: #6fa0e9;
+  background: #e7f0f7;
+}
 /*------*/
 /**-------Profile Form---------**/
 .form {
@@ -168,6 +274,7 @@ button:hover {
 .ui-menu .ui-menu-item{
     padding:5px;
     font-size: 14px;
+
 }
 .relative{
     position: relative;
@@ -311,13 +418,30 @@ button:hover {
 }
 
 /*MENU*/
-#menu{ position: fixed; top: 0; left: 0; height: 100%; z-index: 100; background-color: #ffffff;width: 260px;}
+#menu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 100;
+  background:linear-gradient(-45deg,#0c93cf 0,#00a980 97%);
+  width: 260px;}
 #menu .menu-wrapper-inner{ padding-top: 110px;}
 #menu .menu-wrapper{ position: relative; overflow-x: hidden;}
 #menu .menu{ width: 260px; float: left;}
-#menu .menu-item{ position: relative;}
+#menu .menu-item{ position: relative; color: #fff; }
 #menu .menu-item:hover{ background-color: #fafafa;}
-#menu .menu-item a{  padding: 15px 30px;font-size: 14px; line-height: 18px; font-weight: normal; color: #333333; display: block;}
+#menu .menu-item a{
+  padding: 15px 30px;
+  font-size: 1em;
+  line-height: 18px;
+  font-weight: normal;
+  color:#fff;
+  display: block;
+}
+#menu .menu-item:hover a{
+  color: black;
+}
 #menu .menu-item .spt{ position: absolute; right: 25px; top: 50%; margin-top: -5px;}
 #menu .menu-slider{ position: relative; width: 2000px; left:0;}
 #menu .submenu{ display: none;}
@@ -334,15 +458,21 @@ button:hover {
   text-align: center;
   font-size: 2em;
   font-weight:400;
-  top: ;
+  margin-top: 0;
 }
 .menu-box{overflow: auto; position: relative; height: 100%;}
 
-.menu-header{ position: absolute; z-index: 10; border-bottom: 1px solid #e4e5e6; width: 100%; background-color: #ffffff;
-    -webkit-box-shadow: 0px 2px 2px 0px rgba(50, 50, 50, 0.1);
-    -moz-box-shadow:    0px 2px 2px 0px rgba(50, 50, 50, 0.1);
-    box-shadow:         0px 2px 2px 0px rgba(50, 50, 50, 0.1);
+.menu-header{
+  position: absolute;
+  z-index: 10;
+  border-bottom: 1px solid #e4e5e6;
+  width: 100%;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 2px 2px 0px rgba(50, 50, 50, 0.1);
+  -moz-box-shadow:    0px 2px 2px 0px rgba(50, 50, 50, 0.1);
+  box-shadow:         0px 2px 2px 0px rgba(50, 50, 50, 0.1);
 }
+
 
 .shape-remove-shadow_white{ position: absolute; background: #ffffff; height: 50px; width:10px; right: -3px; top: 60px;}
 .shape-remove-shadow_green{ position: absolute; background: #008658; height: 60px; width:10px; right: -3px; top: 0;}

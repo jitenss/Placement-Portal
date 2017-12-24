@@ -71,6 +71,51 @@ router.post('/register',function(req,res){
 		});
 	}
 });
+router.get('/ChangePassword',function(req,res){
+		res.render('ChangePassword',{layout:'layoutb.handlebars'});
+	});
+//Change Password
+router.post('/ChangePasswordFunction',ensureAuthenticated,function(req,res){
+	var Curr = req.body.CurrentPassword;
+	var newpass = req.body.NewPassword;
+	var conpass = req.body.ConfirmPassword;
+	var CurrUser= req.user;
+	//var user_level = req.body.user_level;
+	console.log(Curr);
+	console.log(newpass);
+	console.log(conpass);
+	console.log(CurrUser);
+	//Validation
+	req.checkBody('Curr','Old Password is required').notEmpty();
+	req.checkBody('newpass','New Password is required').notEmpty();
+	req.checkBody('conpass','Confirm Password is required').notEmpty();
+	req.checkBody('conpass','Passwords do not match').equals(req.body.NewPassword);
+
+	var errors = req.validationErrors();
+
+	if(errors){
+		console.log(errors);
+		req.flash('error',errors);
+		res.redirect('/users/ChangePassword');
+	}
+	else{
+		User.comparePassword(md5(Curr),req.user.password,function(err,isMatch){
+			if(err) throw err;
+			console.log(isMatch);
+			if(!isMatch){
+				console.log("Password Not Match :(");
+				return done(null,false,{message: 'Invalid Password'});
+			}
+		})
+				User.updateUsersPassword(CurrUser,md5(newpass),function(err,user){
+					if(err) throw err;
+					console.log(req.user);
+
+					req.flash('success_msg', 'Password Updated');
+					res.redirect('/users/ChangePassword');
+				});
+			}
+		});
 
 //login using local-strategy
 passport.use(new LocalStrategy({
@@ -213,6 +258,26 @@ router.get('/offers', function(req, res){
 	console.log("On Job offers Page");
 	res.render('offers');
 });
+//Plaacement
+router.get('/placements', function(req, res){
+	console.log("On placement offers Page");
+	res.render('placements',{layout:'layoutb.handlebars'});
+});
+//Students
+router.get('/Students', function(req, res){
+	console.log("On Students page");
+	res.render('Students',{layout:'layoutb.handlebars'});
+});
+//jobOffers
+router.get('/JobOffers', function(req, res){
+	console.log("On JobOffers page");
+	res.render('JobOffers',{layout:'layoutb.handlebars'});
+});
+//InternshipOffers
+router.get('/internOffers', function(req, res){
+	console.log("On internOffers page");
+	res.render('InternshipOffers',{layout:'layoutb.handlebars'});
+});
 //Dashboard
 router.get('/dashboard',function(req,res){
 	console.log('dashboard');
@@ -224,6 +289,12 @@ router.get('/dashboard',function(req,res){
 		console.log("Logged In As Admin");
 		res.render('admin_dashboard', {layout: 'layoutb.handlebars'});
 	}
+});
+
+//-------------Categories
+router.get('/categories', function(req, res){
+	console.log("On Categories Page Page");
+	res.render('categories', {layout:'layoutb.handlebars'});
 });
 
 module.exports = router;
