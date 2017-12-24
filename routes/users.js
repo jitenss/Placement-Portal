@@ -6,6 +6,9 @@ var md5 = require('md5');
 //var bcrypt = require('bcrypt')
 var User = require('../models/user');
 
+
+/*-----------------------------------------Common------------------------------------------------*/
+
 //Check authentication
 function ensureAuthenticated(req,res,next){
 	if(req.isAuthenticated()){
@@ -71,9 +74,12 @@ router.post('/register',function(req,res){
 		});
 	}
 });
+
+//Change password
 router.get('/ChangePassword',function(req,res){
 		res.render('ChangePassword',{layout:'layoutb.handlebars'});
-	});
+});
+
 //Change Password
 router.post('/ChangePasswordFunction',ensureAuthenticated,function(req,res){
 	var Curr = req.body.CurrentPassword;
@@ -106,16 +112,15 @@ router.post('/ChangePasswordFunction',ensureAuthenticated,function(req,res){
 				console.log("Password Not Match :(");
 				return done(null,false,{message: 'Invalid Password'});
 			}
-		})
-				User.updateUsersPassword(CurrUser,md5(newpass),function(err,user){
-					if(err) throw err;
-					console.log(req.user);
-
-					req.flash('success_msg', 'Password Updated');
-					res.redirect('/users/ChangePassword');
-				});
-			}
 		});
+		User.updateUsersPassword(CurrUser,md5(newpass),function(err,user){
+			if(err) throw err;
+				console.log(req.user);
+				req.flash('success_msg', 'Password Updated');
+				res.redirect('/users/ChangePassword');
+				});
+		}
+});
 
 //login using local-strategy
 passport.use(new LocalStrategy({
@@ -165,13 +170,6 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-//logout
-router.get('/logout', function(req, res){
-	req.logout();
-	req.flash('success_msg', 'You are logged out');
-	res.redirect('/');
-});
-
 //login
 router.post('/login',
   passport.authenticate('local',{session:true, faliureRedirect: '/', failureFlash:true}),
@@ -179,7 +177,16 @@ router.post('/login',
 			res.redirect('/users/dashboard');
 });
 
-//peronal Profile
+//logout
+router.get('/logout', function(req, res){
+	req.logout();
+	req.flash('success_msg', 'You are logged out');
+	res.redirect('/');
+});
+
+/*------------------------------------------Student-----------------------------------------*/
+
+//Peronal Profile
 router.get('/personal',ensureAuthenticated, function(req, res){
 	console.log("On personal Profile");
 	res.render('studentPersonalProfile');
@@ -195,11 +202,22 @@ router.post('/submit_personal',ensureAuthenticated,function(req,res){
 
 	var currUser = req.user;
 
-	User.updateUsersPersonalProfile(currUser,fullname,gender,dob,mob1,mob2,function(err,user){
+	var updatedDetails = {
+		name: fullname,
+		gender: gender,
+		date_of_birth: dob,
+		phone_no: {
+			phone_no1: mob1,
+			phone_no2: mob2
+		},
+		register_level: 1
+	};
+
+	User.updateUsersPersonalProfile(currUser,updatedDetails,function(err,user){
 		if(err) throw err;
 		console.log(req.user);
 
-		req.flash('success_msg', 'Profile Updated');
+		req.flash('success_msg', 'Personal Profile Updated');
 		res.redirect('/users/personal');
 	});
 })
@@ -211,10 +229,12 @@ router.get('/academic',ensureAuthenticated, function(req, res){
 });
 
 //Submit academic profile
-router.post('/submit_personal',ensureAuthenticated, function(req,res){
+router.post('/submit_academic',ensureAuthenticated, function(req,res){
 	var branch = req.body.branch;
-	var precent_10 = req.body.precent_10;
-	var precent_12 = req.body.precent_12;
+	var precent_10_type = req.body.precent_10_type;
+	var precent_10_value = req.body.precent_10_value;
+	var precent_12_type = req.body.precent_12_type;
+	var precent_12_value = req.body.precent_12_value;
 	var spi_1 = req.body.spi_1;
 	var spi_2 = req.body.spi_2;
 	var spi_3 = req.body.spi_3;
@@ -224,9 +244,40 @@ router.post('/submit_personal',ensureAuthenticated, function(req,res){
 	var spi_7 = req.body.spi_7;
 	var spi_8 = req.body.spi_8;
 	var cpi = req.body.cpi;
-	var skills = req.body.skills;
-	var file = ;
+	
+	var currUser = req.user;
 
+	var updatedDetails = {
+		branch: branch,
+		percent_10:{
+			type_corp: precent_10_type,
+			val: precent_10_value
+		},
+		percent_12:{
+			type_corp: precent_12_type,
+			val: precent_12_value
+		},
+		spi:{
+			spi_1: spi_1,
+			spi_2: spi_2,
+			spi_3: spi_3,
+			spi_4: spi_4,
+			spi_5: spi_5,
+			spi_6: spi_6,
+			spi_7: spi_7,
+			spi_8: spi_8,
+		},
+		cpi: cpi,
+		register_level: 2
+	};
+
+	User.updateUsersAcademicProfile(currUser,updatedDetails,function(err,user){
+		if(err) throw err;
+		console.log(req.user);
+
+		req.flash('success_msg', 'Academic Profile Updated');
+		res.redirect('/users/academic');
+	});
 	
 });
 
@@ -258,26 +309,33 @@ router.get('/offers', function(req, res){
 	console.log("On Job offers Page");
 	res.render('offers');
 });
-//Plaacement
+
+/*----------------------------------------------Admin------------------------------------------*/
+
+//Placement
 router.get('/placements', function(req, res){
 	console.log("On placement offers Page");
 	res.render('placements',{layout:'layoutb.handlebars'});
 });
+
 //Students
 router.get('/Students', function(req, res){
 	console.log("On Students page");
 	res.render('Students',{layout:'layoutb.handlebars'});
 });
+
 //jobOffers
 router.get('/JobOffers', function(req, res){
 	console.log("On JobOffers page");
 	res.render('JobOffers',{layout:'layoutb.handlebars'});
 });
+
 //InternshipOffers
 router.get('/internOffers', function(req, res){
 	console.log("On internOffers page");
 	res.render('InternshipOffers',{layout:'layoutb.handlebars'});
 });
+
 //Dashboard
 router.get('/dashboard',function(req,res){
 	console.log('dashboard');
@@ -291,7 +349,7 @@ router.get('/dashboard',function(req,res){
 	}
 });
 
-//-------------Categories
+//Categories
 router.get('/categories', function(req, res){
 	console.log("On Categories Page Page");
 	res.render('categories', {layout:'layoutb.handlebars'});

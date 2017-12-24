@@ -42,13 +42,22 @@ var UserSchema = mongoose.Schema({
 		spi_8: Number,
 	},
 	cpi: Number,
-	percent_10: Number,
-	percent_12: Number,
+	percent_10: {
+		type_corp: String,
+		val: Number
+	},
+	percent_12: {
+		type_corp: String,
+		val: Number
+	},
 	skills: [String],
 	application: [String],
 	offers: [String],
-	level: Number,
-	//resume: [],
+	offer_level: Number,
+	register_level:{
+		type: Number,
+		default: 0
+	},
 	status: {
 		type: String,
 		default: 'registered'					//active,registered,suspended
@@ -87,18 +96,16 @@ module.exports.comparePassword = function(password,database_password,callback){
 	callback(null,isMatch);
 }
 
-module.exports.updateUsersPersonalProfile = function(currUser,fullname,gender,dob,mob1,mob2,callback){
+module.exports.updateUsersPersonalProfile = function(currUser,updatedDetails,callback){
 	var query = {email: currUser.email};
-	var updatedDetails = {
-		name:fullname,
-		gender:gender,
-		date_of_birth:dob,
-		phone_no: {
-			phone_no1: mob1,
-			phone_no2: mob2
-		}};
 	User.update(query,updatedDetails,callback);
 }
+
+module.exports.updateUsersAcademicProfile = function(currUser,updatedDetails,callback){
+	var query = {email: currUser.email};
+	User.update(query,updatedDetails,callback);
+}
+
 module.exports.updateUsersPassword = function(currUser,Newpassword,callback){
 	var query = {email: currUser.email};
 	var updatedDetails = {
