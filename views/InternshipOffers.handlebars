@@ -11,39 +11,14 @@
               <th>Actions</th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-              <th>Roll No</th>
-              <th>Name</th>
-              <th>Course</th>
-              <th>Company</th>
-              <th>Stipend</th>
-              <th>Actions</th>
-            </tr>
-        </tfoot>
         <tbody>
+          {{#each result}}
             <tr>
-                <td>Elite Category</td>
-                <td>1200000</td>
-                <td>5000000</td>
-                <td>1</td>
-                <td><button class="btn btn-primary">View</button>&nbsp;&nbsp;<button class="btn btn-danger">Delete</button></td>
+                <td>{{this.rollno}}</td>
+                <td>{{this.name}}</td>
+                <td>B.TECH-{{this.branch}}</td>
             </tr>
-            <tr>
-              <td>Dream Category </td>
-              <td>550000</td>
-              <td>1199999 </td>
-              <td>1</td>
-              <td><button class="btn btn-primary">View</button>&nbsp;&nbsp;<button class="btn btn-danger">Delete</button></td>
-            </tr>
-            <tr>
-              <td>Regular Category </td>
-              <td>350000 </td>
-              <td>549999</td>
-              <td>1</td>
-              <td><button class="btn btn-primary">View</button>&nbsp;&nbsp;<button class="btn btn-danger">Delete</button></td>
-            </tr>
-
+              {{/each}}
         </tbody>
     </table>
   </div>

@@ -259,22 +259,38 @@ router.get('/offers', function(req, res){
 //Plaacement
 router.get('/placements', function(req, res){
 	console.log("On placement offers Page");
-	res.render('placements',{layout:'layoutb.handlebars'});
+	User.getUserByLevel('student',function(err, result){
+		if(err) throw err;
+		console.log(result);
+	res.render('placements',{layout:'layoutb.handlebars',result:result});
+	});
 });
 //Students
 router.get('/Students', function(req, res){
 	console.log("On Students page");
-	res.render('Students',{layout:'layoutb.handlebars'});
+	User.getUserByLevel('student',function(err, result){
+		if(err) throw err;
+		console.log(result);
+	res.render('Students',{layout:'layoutb.handlebars',result:result});
+	});
 });
 //jobOffers
 router.get('/JobOffers', function(req, res){
 	console.log("On JobOffers page");
-	res.render('JobOffers',{layout:'layoutb.handlebars'});
+	User.getUserByLevel('student',function(err, result){
+		if(err) throw err;
+		console.log(result);
+	res.render('JobOffers',{layout:'layoutb.handlebars',result:result});
+	});
 });
 //InternshipOffers
 router.get('/internOffers', function(req, res){
 	console.log("On internOffers page");
-	res.render('InternshipOffers',{layout:'layoutb.handlebars'});
+	User.getUserByLevel('student',function(err, result){
+		if(err) throw err;
+		console.log(result);
+	res.render('InternshipOffers',{layout:'layoutb.handlebars',result:result});
+	});
 });
 //Dashboard
 router.get('/dashboard',function(req,res){
