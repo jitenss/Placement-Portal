@@ -89,7 +89,8 @@ module.exports.comparePassword = function(password,database_password,callback){
 
 module.exports.updateUsersPersonalProfile = function(currUser,fullname,gender,dob,mob1,mob2,callback){
 	var query = {email: currUser.email};
-	var updatedDetails = {name:fullname,
+	var updatedDetails = {
+		name:fullname,
 		gender:gender,
 		date_of_birth:dob,
 		phone_no: {
@@ -98,9 +99,10 @@ module.exports.updateUsersPersonalProfile = function(currUser,fullname,gender,do
 		}};
 	User.update(query,updatedDetails,callback);
 }
-module.exports.updateUsersPasword = function(user_email,newpasshsh,callback){
-	var query = {email:user_email};
-	var updatedDetails = {password:newpasshsh
+module.exports.updateUsersPassword = function(currUser,Newpassword,callback){
+	var query = {email: currUser.email};
+	var updatedDetails = {
+		password:Newpassword
 		};
 	User.update(query,updatedDetails,callback);
 }

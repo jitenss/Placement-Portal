@@ -72,32 +72,34 @@ router.post('/register',function(req,res){
 	}
 });
 router.get('/ChangePassword',function(req,res){
-		res.render('ChangePassword',{layout:'layoutb'});
+		res.render('ChangePassword',{layout:'layoutb.handlebars'});
 	});
 //Change Password
-router.post('/ChangePassword',function(req,res){
+router.post('/ChangePasswordFunction',ensureAuthenticated,function(req,res){
 	var Curr = req.body.CurrentPassword;
 	var newpass = req.body.NewPassword;
 	var conpass = req.body.ConfirmPassword;
 	var CurrUser= req.user;
 	//var user_level = req.body.user_level;
-
+	console.log(Curr);
+	console.log(newpass);
+	console.log(conpass);
+	console.log(CurrUser);
 	//Validation
-	req.checkBody('Curr','Password is required').notEmpty();
-	req.checkBody('newpass','Password is required').notEmpty();
+	req.checkBody('Curr','Old Password is required').notEmpty();
+	req.checkBody('newpass','New Password is required').notEmpty();
+	req.checkBody('conpass','Confirm Password is required').notEmpty();
 	req.checkBody('conpass','Passwords do not match').equals(req.body.NewPassword);
 
 	var errors = req.validationErrors();
 
 	if(errors){
-		req.flash('error',errors);
-		res.redirect('/ChangePassword');
-
 		console.log(errors);
-		console.log('mudit');
+		req.flash('error',errors);
+		res.redirect('/users/ChangePassword');
 	}
 	else{
-		User.comparePassword(md5(Curr),user.password,function(err,isMatch){
+		User.comparePassword(md5(Curr),req.user.password,function(err,isMatch){
 			if(err) throw err;
 			console.log(isMatch);
 			if(!isMatch){
@@ -105,12 +107,12 @@ router.post('/ChangePassword',function(req,res){
 				return done(null,false,{message: 'Invalid Password'});
 			}
 		})
-				User.updateUsersPassword(CurrUser.email,md5(newpass),function(err,user){
+				User.updateUsersPassword(CurrUser,md5(newpass),function(err,user){
 					if(err) throw err;
 					console.log(req.user);
 
 					req.flash('success_msg', 'Password Updated');
-					res.redirect('/users/');
+					res.redirect('/users/ChangePassword');
 				});
 			}
 		});
