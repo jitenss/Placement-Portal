@@ -231,10 +231,10 @@ router.get('/academic',ensureAuthenticated, function(req, res){
 //Submit academic profile
 router.post('/submit_academic',ensureAuthenticated, function(req,res){
 	var branch = req.body.branch;
-	var precent_10_type = req.body.precent_10_type;
-	var precent_10_value = req.body.precent_10_value;
-	var precent_12_type = req.body.precent_12_type;
-	var precent_12_value = req.body.precent_12_value;
+	var precent_10_type = req.body.percent_10_type;
+	var precent_10_value = req.body.percent_10_value;
+	var precent_12_type = req.body.percent_12_type;
+	var precent_12_value = req.body.percent_12_value;
 	var spi_1 = req.body.spi_1;
 	var spi_2 = req.body.spi_2;
 	var spi_3 = req.body.spi_3;
@@ -244,9 +244,8 @@ router.post('/submit_academic',ensureAuthenticated, function(req,res){
 	var spi_7 = req.body.spi_7;
 	var spi_8 = req.body.spi_8;
 	var cpi = req.body.cpi;
-	
-	var currUser = req.user;
 
+	var currUser = req.user;
 	var updatedDetails = {
 		branch: branch,
 		precent_10_type: precent_10_type,
@@ -262,7 +261,7 @@ router.post('/submit_academic',ensureAuthenticated, function(req,res){
 			spi_6: spi_6,
 			spi_7: spi_7,
 			spi_8: spi_8,
-		}, 
+		},
 		cpi: cpi,
 		register_level: 2
 	};
