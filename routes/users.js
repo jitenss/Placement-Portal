@@ -172,9 +172,22 @@ passport.deserializeUser(function(id, done) {
 
 //login
 router.post('/login',
-  passport.authenticate('local',{session:true, faliureRedirect: '/', failureFlash:true}),
+  passport.authenticate('local',{session:true, failureRedirect: '/', failureFlash:'Invalid Email or Password'}),
   function(req, res) {
 			res.redirect('/users/dashboard');
+});
+
+//Dashboard
+router.get('/dashboard',function(req,res){
+	console.log('dashboard');
+	if(req.user.user_level=="student"){
+		console.log("Logged In As Student");
+		res.render('student_dashboard');
+	}
+	else if(req.user.user_level=="admin"){
+		console.log("Logged In As Admin");
+		res.render('admin_dashboard', {layout: 'layoutb.handlebars'});
+	}
 });
 
 //logout
@@ -345,19 +358,6 @@ router.get('/internOffers', function(req, res){
 		console.log(result);
 	res.render('InternshipOffers',{layout:'layoutb.handlebars',result:result});
 	});
-});
-
-//Dashboard
-router.get('/dashboard',function(req,res){
-	console.log('dashboard');
-	if(req.user.user_level=="student"){
-		console.log("Logged In As Student");
-		res.render('student_dashboard');
-	}
-	else if(req.user.user_level=="admin"){
-		console.log("Logged In As Admin");
-		res.render('admin_dashboard', {layout: 'layoutb.handlebars'});
-	}
 });
 
 //Categories
