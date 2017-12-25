@@ -42,14 +42,10 @@ var UserSchema = mongoose.Schema({
 		spi_8: Number,
 	},
 	cpi: Number,
-	percent_10: {
-		type_corp: String,
-		val: Number
-	},
-	percent_12: {
-		type_corp: String,
-		val: Number
-	},
+	percent_10_type: String,
+	percent_10_value: Number,
+	percent_12_type: String,
+	percent_10_value: Number,
 	skills: [String],
 	application: [String],
 	offers: [String],

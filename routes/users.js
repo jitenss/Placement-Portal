@@ -249,15 +249,11 @@ router.post('/submit_academic',ensureAuthenticated, function(req,res){
 
 	var updatedDetails = {
 		branch: branch,
-		percent_10:{
-			type_corp: precent_10_type,
-			val: precent_10_value
-		},
-		percent_12:{
-			type_corp: precent_12_type,
-			val: precent_12_value
-		},
-		spi:{
+		precent_10_type: precent_10_type,
+		precent_10_value: precent_10_value,
+		precent_12_type: precent_12_type,
+		precent_12_value: precent_12_value,
+		spi: {
 			spi_1: spi_1,
 			spi_2: spi_2,
 			spi_3: spi_3,
@@ -266,19 +262,19 @@ router.post('/submit_academic',ensureAuthenticated, function(req,res){
 			spi_6: spi_6,
 			spi_7: spi_7,
 			spi_8: spi_8,
-		},
+		}, 
 		cpi: cpi,
 		register_level: 2
 	};
-
+	console.log(updatedDetails);
 	User.updateUsersAcademicProfile(currUser,updatedDetails,function(err,user){
 		if(err) throw err;
-		console.log(req.user);
+		//console.log(req.user);
 
 		req.flash('success_msg', 'Academic Profile Updated');
 		res.redirect('/users/academic');
 	});
-	
+	//console.log(req.user);
 });
 
 //About US Profile
