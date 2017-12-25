@@ -67,7 +67,12 @@ module.exports.createUser = function(newUser,callback){
 	console.log(newUser.password);
 	newUser.save(callback);
 }
-
+module.exports.getUserByLevel = function(user_level,callback){
+	var query = {
+			user_level:user_level
+	};
+	User.find(query,callback);
+}
 
 module.exports.getUserByEmail = function(email,callback){
 	console.log("Finding User By Email");
