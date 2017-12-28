@@ -1,0 +1,65 @@
+<div class="conteudo-box">
+    <div class="conteudo-boxInner">
+    <div class="form skills">
+        <form class="" action="/users/addSkill" method="post">
+          <h2>Add New Skills</h2>
+          <div class="form-group">
+            <div class="relative">
+              <input name="skill" class="form-control" list="skills" type="text" required="" placeholder="Ex. PhpMyAdmin">
+              <i class="fa fa-file-code-o"></i>
+            </div>
+          </div>
+            <datalist id="skills">
+             <option value="HTML5" label="HTML5">
+             <option value="PHP" label="PHP">
+            <option value="PHPmyAdmin" label="PHPmyAdmin">
+             <option value="CSS3" label="CSS3">
+             <option value="BootStrap" label="BootStrap">
+             <option value="JavaScript" label="JavaScript">
+             <option value="JQuery" label="JQuery">
+             <option value="AngularJs" label="AngularJs">
+            </datalist>
+            <div class="tright">
+              <a href=""><button class="movebtn movebtnre" type="Reset"><i class="fa fa-fw fa-refresh"></i> Clear </button></a>
+              <button class="movebtn movebtnsu" type="Submit">Add <i class="fa fa-fw fa-plus"></i></button>
+            </div>
+        </form>
+          <h2>Your Skills</h2>
+            {{#each user.skills}}
+            <form class="skillForm" action="/users/removeSkill" method="post">
+              <h4>{{this}}</h4>
+              <input type="hidden" value={{this}} name="skill">
+              <button type="submit" name="deleteSkill"><i class="fa fa-close"></i></button>
+            </form>
+            {{/each}}
+
+          <!-- <form class="skillForm">
+            <h4>Computer Graphics</h4>
+            <input type="hidden" value="Computer Graphics" disabled="true">
+            <button type="submit" name="deleteSkill"><i class="fa fa-close"></i></button>
+          </form>
+          <form class="skillForm">
+            <h4>PHP</h4>
+            <input type="hidden" value="PHP" disabled="true">
+            <button type="submit" name="deleteSkill"><i class="fa fa-close"></i></button>
+          </form >
+          <form class="skillForm">
+            <h4>PHPMyAdmin</h4>
+            <input type="hidden" value="PHPMyAdmin" disabled="true">
+            <button type="submit" name="deleteSkill"><i class="fa fa-close"></i></button>
+          </form>
+          <form class="skillForm">
+            <h4>PHP</h4>
+            <input type="hidden" value="PHP" disabled="true">
+            <button type="submit" name="deleteSkill"><i class="fa fa-close"></i></button>
+          </form>
+
+          <form class="skillForm">
+            <h4>Computer Graphics</h4>
+            <input type="hidden" value="Computer Graphics" disabled="true">
+            <button type="submit" name="deleteSkill"><i class="fa fa-close"></i></button>
+          </form> -->
+    </div>
+
+</div>
+</div>

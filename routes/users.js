@@ -304,7 +304,43 @@ router.get('/offers', function(req, res){
 	console.log("On Job offers Page");
 	res.render('offers');
 });
+//Skills for all Profile
+router.get('/skills', function(req, res){
+	console.log("On Skills Page");
+	res.render('skills');
+});
 
+router.post('/addSkill', function(req, res){
+	var skill = req.body.skill;
+	var currUser = req.user;
+	var updatedDetails = {
+		skills : skill
+	}
+	console.log("Adding New Skill");
+	console.log(skill);
+	User.addNewSkill(currUser,updatedDetails,function(err,user){
+		if(err) throw err;
+		req.flash('success_msg', 'Added succesfully');
+		console.log(user);
+		res.redirect('/users/skills');
+	});
+});
+
+router.post('/removeSkill', function(req, res){
+	var skill = req.body.skill;
+	var currUser = req.user;
+	var updatedDetails = {
+		skills : skill
+	}
+	console.log("Removing New Skill");
+	console.log(updatedDetails);
+	User.removeSkill(currUser,updatedDetails,function(err,user){
+		if(err) throw err;
+		req.flash('success_msg', 'Remove succesfully');
+		console.log(user);
+		res.redirect('/users/skills');
+	});
+});
 /*----------------------------------------------Admin------------------------------------------*/
 
 //Placement
