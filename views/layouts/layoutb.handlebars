@@ -10,10 +10,11 @@
       <link rel="stylesheet" href="/css/dashboard.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
 </head>
 
 <body>
@@ -30,7 +31,7 @@
                     </div>
                 </button>
                 <span class="header-nomeEmpresa header-nomeEmpresa_mobile col-xs-show col-sm-show">Dashboard</span>
-                <a href="#" class="brand-icon">Training And Placement Cell, LNMIIT</a>
+                <h2 class="brand-icon">Training And Placement Cell, LNMIIT</h2>
                 <div id="dropdown" class="ddmenu">
                     <i class="fa fa-user">&nbsp;&nbsp;</i>User Settings
                     <ul>
@@ -38,7 +39,7 @@
                       <li><a href="/">Change Passwords</a></li>
                       <li><a href="/JobOffers">Support</a></li>
                       <li><a href="#">About Us</a></li>
-                      <li><a href="#">Log Out</a></li>
+                      <li><a href="/users/logout">Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -77,10 +78,9 @@
                 <div class="menu-wrapper">
                     <div class="menu-slider">
                         <div class="menu">
-                            <ul >
+                            <ul>
                                 <li>
-                                    <div class="menu-item"><a href="/users/placement" class="menu-anchor"><i class="fa fa-university"></i> Placement Events</a>
-                                      <!-- <i class="fa fa-arrow-right pull-right main-arrow"></i> -->
+                                    <div class="menu-item"><a href="/users/placements"><i class="fa fa-university"></i> Placement Events</a>
                                     </div>
                                 </li>
                                 <li>

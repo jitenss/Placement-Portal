@@ -8,11 +8,11 @@
           <label for="rollno">Branch:</label>
           <div class="relative">
             <select name="branch" class="form-control" type="text" >
-              <option value="CSE">CSE</option>
-              <option value="ECE">ECE</option>
-              <option value="CCE">CCE</option>
-              <option value="ME">ME</option>
-              <option value="MME">MME</option>
+              <option value="CSE" {{#compare user.branch '==' "CSE"}} selected = "selected" {{else}} {{/compare}}>CSE</option>
+              <option value="ECE" {{#compare user.branch '==' "ECE"}} selected = "selected" {{else}} {{/compare}}>ECE</option>
+              <option value="CCE" {{#compare user.branch '==' "CCE"}} selected = "selected" {{else}} {{/compare}}>CCE</option>
+              <option value="ME"  {{#compare user.branch '==' "ME"}} selected = "selected" {{else}} {{/compare}}>ME</option>
+              <option value="MME" {{#compare user.branch '==' "MME"}} selected = "selected" {{else}} {{/compare}}>MME</option>
             </select>
             <i class="fa fa-graduation-cap"></i>
           </div>
@@ -27,7 +27,7 @@
             <input type="radio" name="percent_10_type" value="percentage"> Percentage
           </div>
           <div class="relative">
-            <input name="percent_10_value" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your % here">
+            <input name="percent_10_value" value='{{user.percent_10_value}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your % here">
             <i class="fa fa-user"></i>
           </div>
         </div>
@@ -39,7 +39,7 @@
             <input type="radio" name="percent_12_type" value="percentage"> Percentage
           </div>
           <div class="relative">
-            <input name="percent_12_value" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your % here">
+            <input name="percent_12_value" value='{{user.percent_12_value}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your % here">
             <i class="fa fa-user"></i>
           </div>
         </div>
@@ -47,35 +47,35 @@
           <label for="email">Semester Wise SPI : </label>
           <div class="semWise">
               <div class="relative">
-                <span>Sem 1 :</span><input name="spi_1" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 2 :</span><input name="spi_2" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 3 :</span><input name="spi_3" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 4 :</span><input name="spi_4" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 5 :</span><input name="spi_5" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 6 :</span><input name="spi_6" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 7 :</span><input name="spi_7" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 8 :</span><input name="spi_8" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your SPI here">
+                <span>Sem 1 :</span><input name="spi_1" value='{{user.spi.spi_1}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9]"  autocomplete="" placeholder="Type Your SPI here">
+                <span>Sem 2 :</span><input name="spi_2" value='{{user.spi.spi_2}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9]"  autocomplete="" placeholder="Type Your SPI here">
+                <span>Sem 3 :</span><input name="spi_3" value='{{user.spi.spi_3}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9]"  autocomplete="" placeholder="Type Your SPI here">
+                <span>Sem 4 :</span><input name="spi_4" value='{{user.spi.spi_4}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9]"  autocomplete="" placeholder="Type Your SPI here">
+                <span>Sem 5 :</span><input name="spi_5" value='{{user.spi.spi_5}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9]"  autocomplete="" placeholder="Type Your SPI here">
+                <span>Sem 6 :</span><input name="spi_6" value='{{user.spi.spi_6}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9]"  autocomplete="" placeholder="Type Your SPI here">
+                <span>Sem 7 :</span><input name="spi_7" value='{{user.spi.spi_7}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9]"  autocomplete="" placeholder="Type Your SPI here">
+                <span>Sem 8 :</span><input name="spi_8" value='{{user.spi.spi_8}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9]"  autocomplete="" placeholder="Type Your SPI here">
               </div>
             </div>
         </div>
         <div class="form-group">
           <label for="email">Current CPI : </label>
           <div class="relative">
-            <input name="cpi" class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your CPI here">
+            <input name="cpi" class="form-control" id="name"  value='{{user.cpi}}' type="text" pattern="[0-9]+.[0-9]"  autocomplete="" placeholder="Type Your CPI here">
             <i class="fa fa-user"></i>
           </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <h3>Your Skills</h3>
           <label for="email">Add New Skill  : </label>
           <div class="relative">
             <input class="form-control" id="name" type="text" pattern="[0-9]+"  autocomplete="" placeholder="Type Your CPI here">
             <i class="fa fa-plus"></i>
           </div>
-        </div>
+        </div> -->
 
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="email">Upload New Resume:</label>
           <div class="relative">
             <div class="input-group">
@@ -88,7 +88,7 @@
               <i class="fa fa-link"></i>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="tright">
           <a href=""><button class="movebtn movebtnre" type="Reset"><i class="fa fa-fw fa-refresh"></i> Reset </button></a>
