@@ -8,9 +8,10 @@
                 <th>Course</th>
                 <th>Aggregate</th>
                 <th>10th</th>
-                <th>10th Score Type</th>
+                <!-- <th>10th Score Type</th> -->
                 <th>12th</th>
-                <th>12th Score Type</th>
+                <!-- <th>12th Score Type</th> -->
+                <th>CPI</th>
                 <th>Back Papers</th>
                 <th>Jobs</th>
                 <th>Status</th>
@@ -24,10 +25,17 @@
                 <td>{{this.name}}</td>
                 <td>B.TECH-{{this.branch}}</td>
                 <td>{{this.cpi}}</td>
-                <td>{{this.percent_10}}</td>
+                <td>{{this.percent_10_value}}</td>
+                <!-- <td>{{this.percent_10_type}}</td> -->
+                <td>{{this.percent_12_value}}</td>
+                <!-- <td>{{this.percent_12_type}}</td> -->
                 <td>{{this.cpi}}</td>
-                <td>{{this.percent_12}}</td>
-                <td>{{this.cpi}}</td>
+                <td>{{this.backPapers}}</td>
+                <td>{{this.jobs}}</td>
+                <td>
+                  {{this.register_level}}
+                </td>
+                <td><button class="btn btn-sm btn-primary">View</button>&nbsp;&nbsp;<button class="btn btn-sm btn-danger">Debart</button></td>
             </tr>
               {{/each}}
           </tbody>

@@ -231,10 +231,10 @@ router.get('/academic',ensureAuthenticated, function(req, res){
 //Submit academic profile
 router.post('/submit_academic',ensureAuthenticated, function(req,res){
 	var branch = req.body.branch;
-	var precent_10_type = req.body.percent_10_type;
-	var precent_10_value = req.body.percent_10_value;
-	var precent_12_type = req.body.percent_12_type;
-	var precent_12_value = req.body.percent_12_value;
+	var percent_10_type = req.body.percent_10_type;
+	var percent_10_value = req.body.percent_10_value;
+	var percent_12_type = req.body.percent_12_type;
+	var percent_12_value = req.body.percent_12_value;
 	var spi_1 = req.body.spi_1;
 	var spi_2 = req.body.spi_2;
 	var spi_3 = req.body.spi_3;
@@ -248,10 +248,10 @@ router.post('/submit_academic',ensureAuthenticated, function(req,res){
 	var currUser = req.user;
 	var updatedDetails = {
 		branch: branch,
-		precent_10_type: precent_10_type,
-		precent_10_value: precent_10_value,
-		precent_12_type: precent_12_type,
-		precent_12_value: precent_12_value,
+		percent_10_type: percent_10_type,
+		percent_10_value: percent_10_value,
+		percent_12_type: percent_12_type,
+		percent_12_value: percent_12_value,
 		spi: {
 			spi_1: spi_1,
 			spi_2: spi_2,
@@ -316,7 +316,14 @@ router.get('/placements', function(req, res){
 	res.render('placements',{layout:'layoutb.handlebars',result:result});
 	});
 });
-
+router.get('/createEvent', function(req, res){
+	console.log("On Create Event offers Page");
+	User.getUserByLevel('student',function(err, result){
+		if(err) throw err;
+		console.log(result);
+	res.render('createEvent',{layout:'layoutb.handlebars',result:result});
+});// XXX:
+});
 //Students
 router.get('/Students', function(req, res){
 	console.log("On Students page");

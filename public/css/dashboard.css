@@ -403,6 +403,162 @@ button:hover {
     border-color: #1e439b;
     box-shadow: inset 96px 0 0 0 #1e439b;
 }
+/************MultiStep Form Style*******/
+/*form styles*/
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 30px;
+}
+
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+#msform label{
+  position: relative;
+  width: 100%;
+  text-align: left;
+  left:2%;
+}
+/*inputs*/
+#msform input, #msform textarea,#msform select {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 13px;
+}
+
+#msform input:focus, #msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #0c93cf;
+    outline-width: 0;
+    transition: All 0.5s ease-in;
+    -webkit-transition: All 0.5s ease-in;
+    -moz-transition: All 0.5s ease-in;
+    -o-transition: All 0.5s ease-in;
+}
+
+/*buttons*/
+#msform .action-button {
+    width: 100px;
+    background: #0c93cf;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #0c93cf;
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #C5C5F1;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover, #msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
+}
+
+/*headings*/
+.fs-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+
+#progressbar li {
+    list-style-type: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 9px;
+    width: 33.33%;
+    float: left;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 24px;
+    height: 24px;
+    line-height: 26px;
+    display: block;
+    font-size: 12px;
+    color: #333;
+    background: white;
+    border-radius: 25px;
+    margin: 0 auto 10px auto;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1; /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
 
 
 /* --- Media Queries --- */
@@ -441,6 +597,7 @@ button:hover {
 }
 #menu .menu-item:hover a{
   color: black;
+  text-decoration: none;
 }
 #menu .menu-item .spt{ position: absolute; right: 25px; top: 50%; margin-top: -5px;}
 #menu .menu-slider{ position: relative; width: 2000px; left:0;}
@@ -507,7 +664,7 @@ button:hover {
 #conteudo .breadcrumb-link{ color: #929394; display: inline-block; font-size: 14px;}
 #conteudo .breadcrumb-separator{ display: inline-block;}
 #conteudo .breadcrumb-link_ativo{ color: #afb0b1;}
-#conteudo .conteudo-boxInner{ padding: 20px 20px 100px 20px;}
+#conteudo .conteudo-boxInner{ padding: 5px 20px 20px 20px;}
 
 .button-actions{ position: fixed; bottom: 0; right: 40px; cursor: pointer;}
 .borderradius .button-actions{ background-color: #008658; width: 56px; height: 56px; bottom: 20px; right: 60px;
@@ -587,9 +744,39 @@ button:hover {
 
 }
 
+/************Table Design**************/
+#example{
+  text-align: center;
+  font-size: 0.75em;
+}
+/************Create Placement**************/
+.create{
+  position: relative;
+  width: 28%;
+  text-align: center;
+  left: 70%;
+}
+.create h2{
+  background: #0c93cf;
+  color: #fff;
+  font-size: 1.3em;
+  padding: 10px;
+  border-radius: 10px;
+}
+.create a:hover{
+  text-decoration: none;
+}
+.create h2:hover{
+  background:#00a980;
+  color: #fff;
 
 
-
+}
+.create h2 i{
+  border: 2px solid #fff;
+  border-radius: 50%;
+  padding: 2px;
+}
 
 /****************************/
 /*RESPOSIVE*/
