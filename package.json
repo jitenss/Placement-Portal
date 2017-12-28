@@ -27,6 +27,7 @@
     "express-session": "*",
     "express-validator": "*",
     "handlebars-helper-equal": "*",
+    "handlebars-helpers": "^0.10.0",
     "md5": "^2.2.1",
     "mongodb": "*",
     "mongoose": "*",

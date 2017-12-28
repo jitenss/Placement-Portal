@@ -8,11 +8,11 @@
           <label for="rollno">Branch:</label>
           <div class="relative">
             <select name="branch" class="form-control" type="text" >
-              <option value="CSE">CSE</option>
-              <option value="ECE">ECE</option>
-              <option value="CCE">CCE</option>
-              <option value="ME">ME</option>
-              <option value="MME">MME</option>
+              <option value="CSE" {{#compare user.branch '==' "CSE"}} selected = "selected" {{else}} {{/compare}}>CSE</option>
+              <option value="ECE" {{#compare user.branch '==' "ECE"}} selected = "selected" {{else}} {{/compare}}>ECE</option>
+              <option value="CCE" {{#compare user.branch '==' "CCE"}} selected = "selected" {{else}} {{/compare}}>CCE</option>
+              <option value="ME"  {{#compare user.branch '==' "ME"}} selected = "selected" {{else}} {{/compare}}>ME</option>
+              <option value="MME" {{#compare user.branch '==' "MME"}} selected = "selected" {{else}} {{/compare}}>MME</option>
             </select>
             <i class="fa fa-graduation-cap"></i>
           </div>

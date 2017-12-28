@@ -27,9 +27,15 @@
           <label for="rollno">Gender: {{user.gender}}</label>
           <div class="relative">
             <select name="gender" class="form-control" type="text" required="">
-              <option value="M">M</option>
-              <option value="F">F</option>
-              <option value="O">Others</option>
+                <option value="M" {{#compare user.gender '===' 'M'}} selected = "selected" {{else}} {{/compare}}>
+                  M
+                </option>
+                <option value="F" {{#compare user.gender '===' 'F'}} selected = "selected" {{else}} {{/compare}}>
+                  F
+                </option>
+                <option value="O" {{#compare user.gender '===' 'O'}} selected = "selected" {{else}} {{/compare}}>
+                  Others
+                </option>
             </select>
             <i class="fa fa-user"></i>
           </div>

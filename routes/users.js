@@ -5,7 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var md5 = require('md5');
 //var bcrypt = require('bcrypt')
 var User = require('../models/user');
-
+var helpers = require('handlebars-helpers')();
 
 /*-----------------------------------------Common------------------------------------------------*/
 
