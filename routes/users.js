@@ -6,7 +6,9 @@ var md5 = require('md5');
 //var bcrypt = require('bcrypt')
 var User = require('../models/user');
 var helpers = require('handlebars-helpers')();
-
+var async = require("async");
+var nodemailer = require("nodemailer");
+var crypto = require("crypto");
 /*-----------------------------------------Common------------------------------------------------*/
 
 //Check authentication
@@ -197,7 +199,61 @@ router.get('/logout', function(req, res){
 	req.flash('success_msg', 'You are logged out');
 	res.redirect('/');
 });
+//forgotPassword
+router.get('/forgot', function(req, res) {
+  res.render('forgot');
+});
+router.get('/forgot', function(req, res, next) {
+  async.waterfall([
+    function(done) {
+      crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+        done(err, token);
+      });
+    },
+    function(token, done) {
+      User.findOne({ email: req.body.email }, function(err, User) {
+        if (!User) {
+          req.flash('error', 'No account with that email address exists.');
+          return res.redirect('/forgot');
+        }
 
+        User.resetPasswordToken = token;
+        User.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        User.save(function(err) {
+          done(err, token, User);
+        });
+      });
+    },
+    function(token, User, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: 'learntocodeinfo@gmail.com',
+          pass: process.env.GMAILPW
+        }
+      });
+      var mailOptions = {
+        to: User.email,
+        from: 'learntocodeinfo@gmail.com',
+        subject: 'Node.js Password Resets',
+        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+        console.log('mail sent');
+        req.flash('success', 'An e-mail has been sent to ' + User.email + ' with further instructions.');
+        done(err, 'done');
+      });
+    }
+  ], function(err) {
+    if (err) return next(err);
+    res.redirect('/forgot');
+  });
+});
 /*------------------------------------------Student-----------------------------------------*/
 
 //Peronal Profile

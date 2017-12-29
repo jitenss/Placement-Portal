@@ -6,8 +6,11 @@ var md5 = require('md5');
 var UserSchema = mongoose.Schema({
 	email: {
 		type: String,
-		unique: true
+		unique: true,
+		required:true
 	},
+	resetPasswordToken: String,
+resetPasswordExpires: Date,
 	rollno: {
 		type: String
 		//unique: true,
