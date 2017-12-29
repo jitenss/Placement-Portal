@@ -171,10 +171,24 @@ passport.deserializeUser(function(id, done) {
 });
 
 //login
-router.post('/login',
-  passport.authenticate('local',{session:true, faliureRedirect: '/', failureFlash:true}),
-  function(req, res) {
-			res.redirect('/users/dashboard');
+// router.post('/login',
+//   passport.authenticate('local',{session:true, faliureRedirect: '/', failureFlash:true}),
+//   function(req, res) {
+// 			res.redirect('/users/dashboard');
+// });
+
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) return next(err)
+    if (!user) {
+			req.flash('error_msg', 'Invalid Details');
+      return res.redirect('/')
+    }
+    req.logIn(user, function(err) {
+      if (err) return next(err);
+      return res.redirect('/users/dashboard');
+    });
+  })(req, res, next);
 });
 
 //logout
