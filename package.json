@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jitenss/Placement-Portal#readme",
   "dependencies": {
+    "async": "^2.6.0",
     "bcryptjs": "*",
     "body-parser": "*",
     "connect-flash": "*",
@@ -37,6 +38,7 @@
     "mongoose": "*",
     "mongoose-dateonly": "1.0.3",
     "multer": "^1.3.0",
+    "nodemailer": "^4.4.1",
     "nodemon": "*",
     "passport": "*",
     "passport-http": "*",
