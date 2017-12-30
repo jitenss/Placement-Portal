@@ -451,53 +451,54 @@ router.get('/createEvent', function(req, res){
 
 //Create Event Submit
 router.post('/submit_event',function(req,res){
-	// var companyName = req.body.cName;
-	// var position = req.body.position;
-	// var type = req.body.type;
-	// var branch = req.body.branch;
-	// var percent_10 = req.body.percent_10;
-	// var percent_12 = req.body.percent_12;
-	// var cpi = req.body.cpi;
-	// var backlogs = req.body.backlogs;
-	// var positionDetails = req.body.positiondetails;
-	// var schedule = req.body.schedule;
-	// var addDetails =req.body.additionaldetails;
+	var companyName = req.body.cName;
+	var position = req.body.position;
+	var type = req.body.type;
+	var branch = req.body.branch;
+	var percent_10 = req.body.percent_10;
+	var percent_12 = req.body.percent_12;
+	var cpi = req.body.cpi;
+	var backlogs = req.body.backlogs;
+	var positionDetails = req.body.positiondetails;
+	var schedule = req.body.schedule;
+	var addDetails =req.body.additionaldetails;
 
-	var sampleFile = req.files.companyfile;
+	
 
-	// var newCompany = new Company({
-	// 	name: companyName,
-	// 	//position:,
-	// 	//type:,
-	// 	criteria: {
-	// 		percent_10: percent_10,
-	// 		percent_12: percent_12,
-	// 		cpi: cpi,
-	// 		backlogs: backlogs,
-	// 		branch: branch
-	// 	},
-	// 	position_details: positionDetails,
-	// 	schedule: schedule,
-	// 	additional_details: addDetails,
-	// 	status: "open"
-	// });
-	// console.log("Company Object Created");
-	// Company.createCompany(newCompany,function(err,result){
-	// 	if(err) throw err;
-	// 	console.log(result);
+	var newCompany = new Company({
+		name: companyName,
+		//position:,
+		//type:,
+		criteria: {
+			percent_10: percent_10,
+			percent_12: percent_12,
+			cpi: cpi,
+			backlogs: backlogs,
+			branch: branch
+		},
+		position_details: positionDetails,
+		schedule: schedule,
+		additional_details: addDetails,
+		status: "open"
+	});
+	console.log("Company Object Created");
+	Company.createCompany(newCompany,function(err,result){
+		if(err) throw err;
+		console.log(result);
 
-	// });
+	});
 
 	//if(!req.files)
 	//	return res.status(400).send('No files were uploaded.');
 	
+	var sampleFile = req.files.companyfile;
 
-	// sampleFile.mv(path.join(__dirname,companyfiles)+sampleFile+'.ods', function(err) {
- //    	if (err)
- //  	    return res.status(500).send(err);
+	sampleFile.mv(path.join(__dirname,companyfiles)+sampleFile+'.ods', function(err) {
+    	if (err)
+  	    return res.status(500).send(err);
 
- //    	res.send('File uploaded!');
-	// });
+    	res.send('File uploaded!');
+	});
 	req.flash('success_msg','Company added succesfully');
 	res.redirect('/users/dashboard');
 });
