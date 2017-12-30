@@ -10,7 +10,7 @@ var UserSchema = mongoose.Schema({
 		required:true
 	},
 	resetPasswordToken: String,
-resetPasswordExpires: Date,
+	resetPasswordExpires: Date,
 	rollno: {
 		type: String
 		//unique: true,
