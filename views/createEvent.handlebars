@@ -1,59 +1,74 @@
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-        <form id="msform">
+        <form id="msform" action="/users/submit_event" method="post">
               <!-- fieldsets -->
+              
               <fieldset>
                   <h2 class="fs-title">Event Details</h2>
-                  <!-- <h3 class="fs-subtitle">Tell us something more about you</h3> -->
-                  <label for="">Event Title</label>
-                    <input type="text" name="eventTitle" placeholder="Event Title" required/>
+
                   <label for="">Company Name</label>
                     <input type="text" name="cName" placeholder="Company Name" required/>
+                  
+                  <label for="">Position</label>
+                    <input type="text" name="position" placeholder="Position"/>
+
                   <label for="">Type</label>
                     <select name="type">
-                      <option value="recruitment">Recruitment</option>
-                      <option value="training">Training</option>
-                      <option value="seminar">Seminar</option>
-                      <option value="assessment">Assessment</option>
-                      <option value="others">Others</option>
+                      <option value="fte">FTE</option>
+                      <option value="sli">SLI</option>
+                      <option value="ftesli">FTE+SLI</option>
                     </select>
-                  <label for="">Status</label>
-                    <input type="text" name="status" value="Defined" placeholder="Status"/>
-                    <input type="button" name="next" class="next action-button" value="Next"/>
+
+                  <label for="">Branches</label>
+                    <input type="checkbox" name="branch" value="CSE">CSE
+                    <input type="checkbox" name="branch" value="CCE">CCE
+                    <input type="checkbox" name="branch" value="ECE">ECE
+                    <input type="checkbox" name="branch" value="MME">MME
+                    <input type="checkbox" name="branch" value="ME">ME
+
+                  <label for="">10th Percentage</label>
+                    <input type="text" name="percent_10" placeholder="10th Percent"/>
+
+                  <label for="">12th Percentage</label>
+                    <input type="text" name="percent_12" placeholder="12th Percent"/>
+
+                  <label for="">CPI</label>
+                    <input type="text" name="cpi" placeholder="CPI"/>
+
+                  <label for="">Active Backlogs</label>
+                    <input type="text" name="backlogs" placeholder="Number of backlogs"/>
+
+                  <input type="button" name="next" class="next action-button" value="Next"/>
               </fieldset>
+
               <fieldset>
                   <h2 class="fs-title">Attachments</h2>
-                  <!-- <h3 class="fs-subtitle">Your presence on the social network</h3> -->
-                  <input type="text" name="twitter" placeholder="Twitter"/>
-
-                  <input type="text" name="facebook" placeholder="Facebook"/>
-                  
-                  <input type="text" name="gplus" placeholder="Google Plus"/>
+    
+                  <input type="file" name="file" placeholder="Attach files"/>
 
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                   <input type="button" name="next" class="next action-button" value="Next"/>
               </fieldset>
+
               <fieldset>
-                  <h2 class="fs-title">Position Datails</h2>
-                  <!-- <h3 class="fs-subtitle">Your presence on the social network</h3> -->
-                  <input type="text" name="twitter" placeholder="Twitter"/>
-                  <input type="text" name="facebook" placeholder="Facebook"/>
-                  <input type="text" name="gplus" placeholder="Google Plus"/>
+                  <h2 class="fs-title">Position Details</h2>
+                  <input type="text" name="positiondetails" placeholder="Details"/>
+
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                   <input type="button" name="next" class="next action-button" value="Next"/>
               </fieldset>
+
               <fieldset>
                   <h2 class="fs-title">Schedule</h2>
-                  <!-- <h3 class="fs-subtitle">Your presence on the social network</h3> -->
-                  <input type="text" name="twitter" placeholder="Twitter"/>
-                  <input type="text" name="facebook" placeholder="Facebook"/>
-                  <input type="text" name="gplus" placeholder="Google Plus"/>
+      
+                  <input type="text" name="schedule" placeholder="Schedule"/>
+
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                   <input type="button" name="next" class="next action-button" value="Next"/>
               </fieldset>
+
               <fieldset>
                   <h2 class="fs-title">Registration Details</h2>
-                  <!-- <h3 class="fs-subtitle">Your presence on the social network</h3> -->
                   <label for="">Start Time</label>
                     <input type="time" name="startTime" placeholder="Start Time"/>
                   <label for="">Start Date</label>
@@ -62,18 +77,10 @@
                     <input type="time" name="endTime" placeholder="End Time"/>
                   <label for="">End Date</label>
                     <input type="date" name="endDate" placeholder="End Date"/>
-                  <label for="">Registration Details</label>
-                  <textarea name="regDetails" rows="8" cols="80" placeholder="Registration Details"></textarea>
+                  <label for="">Additional Details</label>
+                  <textarea name="additionaldetails" rows="8" cols="80" placeholder="Additional Details"></textarea>
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                  <input type="button" name="next" class="next action-button" value="Next"/>
-              </fieldset>
-              <fieldset>
-                  <h2 class="fs-title">Comments/Notes</h2>
-                  <!-- <h3 class="fs-subtitle">Fill in your credentials</h3> -->
-                  <label for="">Comments/Notes</label>
-                    <textarea name="comments" rows="8" cols="80" placeholder="Add Notes here"></textarea>
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                  <input type="submit" class="submit action-button" value="Submit"/>
               </fieldset>
           </form>
   </div>

@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="rollno">Gender: {{user.gender}}</label>
+          <label for="rollno">Gender:</label>
           <div class="relative">
             <select name="gender" class="form-control" type="text" required="">
                 <option value="M" {{#compare user.gender '===' 'M'}} selected = "selected" {{else}} {{/compare}}>
@@ -43,7 +43,7 @@
         <div  class="form-group">
           <label for="email">Date of birth:</label>
           <div class="relative">
-            <input class="form-control" name="dob" value='{{user.date_of_birth}}' type="date" required="" placeholder="Type your DOB Number...">
+            <input class="form-control" name="dob" value='' type="date" required="" placeholder="Type your DOB Number...">
             <i class="fa fa-calendar"></i>
           </div>
         </div>

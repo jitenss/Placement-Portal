@@ -171,10 +171,23 @@ passport.deserializeUser(function(id, done) {
 });
 
 //login
-router.post('/login',
-  passport.authenticate('local',{session:true, failureRedirect: '/', failureFlash:'Invalid Email or Password'}),
-  function(req, res) {
-			res.redirect('/users/dashboard');
+// router.post('/login',
+//   passport.authenticate('local',{session:true, faliureRedirect: '/', failureFlash:true}),
+//   function(req, res) {
+// 			res.redirect('/users/dashboard');
+// });
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) return next(err)
+    if (!user) {
+			req.flash('error_msg', 'Invalid Details');
+      return res.redirect('/')
+    }
+    req.logIn(user, function(err) {
+      if (err) return next(err);
+      return res.redirect('/users/dashboard');
+    });
+  })(req, res, next);
 });
 
 //Dashboard
@@ -317,7 +330,43 @@ router.get('/offers', function(req, res){
 	console.log("On Job offers Page");
 	res.render('offers');
 });
+//Skills for all Profile
+router.get('/skills', function(req, res){
+	console.log("On Skills Page");
+	res.render('skills');
+});
 
+router.post('/addSkill', function(req, res){
+	var skill = req.body.skill;
+	var currUser = req.user;
+	var updatedDetails = {
+		skills : skill
+	}
+	console.log("Adding New Skill");
+	console.log(skill);
+	User.addNewSkill(currUser,updatedDetails,function(err,user){
+		if(err) throw err;
+		req.flash('success_msg', 'Added succesfully');
+		console.log(user);
+		res.redirect('/users/skills');
+	});
+});
+
+router.post('/removeSkill', function(req, res){
+	var skill = req.body.skill;
+	var currUser = req.user;
+	var updatedDetails = {
+		skills : skill
+	}
+	console.log("Removing New Skill");
+	console.log(updatedDetails);
+	User.removeSkill(currUser,updatedDetails,function(err,user){
+		if(err) throw err;
+		req.flash('success_msg', 'Remove succesfully');
+		console.log(user);
+		res.redirect('/users/skills');
+	});
+});
 /*----------------------------------------------Admin------------------------------------------*/
 
 //Placement
@@ -329,14 +378,71 @@ router.get('/placements', function(req, res){
 	res.render('placements',{layout:'layoutb.handlebars',result:result});
 	});
 });
+
+//Create Event
 router.get('/createEvent', function(req, res){
 	console.log("On Create Event offers Page");
 	User.getUserByLevel('student',function(err, result){
 		if(err) throw err;
 		console.log(result);
-	res.render('createEvent',{layout:'layoutb.handlebars',result:result});
-});// XXX:
+		res.render('createEvent',{layout:'layoutb.handlebars',result:result});
+	});
 });
+
+//Create Event Submit
+router.post('/submit_event',function(req,res){
+	//var eventTitle
+	var companyName = req.body.cName;
+	//var position = req.body.position;
+	//var type = req.body.type;
+	var branch = req.body.branch;
+	var percent_10 = req.body.percent_10;
+	var percent_12 = req.body.percent_12;
+	var cpi = req.body.cpi;
+	var backlogs = req.body.backlogs;
+	var positionDetails = req.body.positiondetails;
+	var schedule = req.body.schedule;
+	var addDetails =req.body.additionaldetails;
+
+	var newCompany = new Company({
+		name: companyName,
+		//position:,
+		//type:,
+		criteria: {
+			percent_10: percent_10,
+			percent_12: percent_12,
+			cpi: cpi,
+			backlogs: backlogs,
+			branch: branch
+		},
+		position_details: positionDetails,
+		schedule: schedule,
+		additional_details: addDetails,
+		status: "open"
+	});
+
+	Company.createCompany(newCompany,function(err,result){
+		if(err) throw err;
+		console.log(result);
+
+	});
+	
+	req.flash('success_msg','Company added succesfully');
+	res.redirect('/users/dashboard');
+
+	// if(!req.files)
+	// 	return res.status(400).send('No files were uploaded.');
+
+	// let sampleFile = req.files.sampleFile;
+
+	// sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
+ //    if (err)
+ //      return res.status(500).send(err);
+
+ //    res.send('File uploaded!');
+  // });
+});
+
 //Students
 router.get('/Students', function(req, res){
 	console.log("On Students page");

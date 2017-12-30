@@ -106,7 +106,6 @@ module.exports.updateUsersAcademicProfile = function(currUser,updatedDetails,cal
 	var query = {email: currUser.email};
 	User.update(query,updatedDetails,callback);
 }
-
 module.exports.updateUsersPassword = function(currUser,Newpassword,callback){
 	var query = {email: currUser.email};
 	var updatedDetails = {
@@ -114,3 +113,15 @@ module.exports.updateUsersPassword = function(currUser,Newpassword,callback){
 		};
 	User.update(query,updatedDetails,callback);
 }
+
+/*******Skills Page Function*************/
+module.exports.addNewSkill = function(currUser,updatedDetails,callback){
+	var query = {email: currUser.email};
+	User.findOneAndUpdate(query,{$push:updatedDetails},callback);
+}
+module.exports.removeSkill = function(currUser,updatedDetails,callback){
+	var query = {email: currUser.email};
+	User.findOneAndUpdate(query,{$pull:updatedDetails},callback);
+}
+
+/*******End Skills Page Function*************/

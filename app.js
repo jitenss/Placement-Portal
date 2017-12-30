@@ -2,15 +2,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
+var exphbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
+var fileUpload = require('express-fileupload');
 var passport = require('passport');
 var localStrategy = require('passport-local-roles').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-
 mongoose.Promise = global.Promise;
 
 mongoose.connect("mongodb://localhost:27017/placement-portal", {
@@ -70,6 +70,9 @@ app.use(expressValidator({
     };
   }
 }));
+
+//File Upload
+app.use(fileUpload());
 
 //Connect flash
 app.use(flash());

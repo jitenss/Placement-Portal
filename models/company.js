@@ -1,31 +1,36 @@
 var mongoose = require('mongoose');
 
 var CompanySchema = mongose.Schema({
-	_id: Schema.ObjectId,
 	name: String,
-	position: {
-
-	},
-	branch: [String],
-	criteria: {
-		percent_10: Number,
-		percent_12: Number,
-		cpi: Number
-	},
-	process: {
+	/*position: {
 
 	},
 	type: {
 
+	},*/
+	criteria: {
+		percent_10: Number,
+		percent_12: Number,
+		cpi: Number,
+		backlogs: Number,
+		branch: [String],
 	},
-	attachments: [],
-	schedule: {},
+	position_details: String,
+	schedule: String,		//Process
+	//attachments: [],
 	additional_details: String,
 
-	eligible_students: {},
-	registered_students: {},
-	offered: {},
-	status: {}
+	eligible_students: [String],
+	registered_students: [String],
+	offered: [String],
+	status: {
+		type: String,
+		default: "Open"
+	}
 });
 
 var Company = module.exports = mongoose.model('Company', CompanySchema);
+
+module.exports.createCompany = function(newCompany,callback){
+	newCompany.save(callback);
+}

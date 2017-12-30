@@ -339,6 +339,34 @@ button:hover {
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{
     background-color: #fff;
 }
+/***************Skills Form************/
+
+.skillForm{
+  position:relative;
+  float: left;
+  background-color: #1e439b;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  border-radius: 10px;
+  color: #fff;
+  margin:5px;
+
+
+}
+.skillForm h4{
+  position: relative;
+  border: none;
+  font-size: 0.9em;
+  padding: 2px;
+  width: auto;
+  float: left;
+}
+.skillForm button{
+  border: none;
+  position: relative;
+  float: left;
+}
 
 /* --- Thanks Message Popup --- */
 .thanks{
