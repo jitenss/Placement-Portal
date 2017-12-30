@@ -5,6 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var md5 = require('md5');
 //var bcrypt = require('bcrypt')
 var User = require('../models/user');
+var Company = require('../models/company');
 var helpers = require('handlebars-helpers')();
 var async = require("async");
 var nodemailer = require("nodemailer");
@@ -437,7 +438,7 @@ router.get('/placements', function(req, res){
 
 //Create Event
 router.get('/createEvent', function(req, res){
-	console.log("On Create Event offers Page");
+	console.log("On Create Event Page");
 	User.getUserByLevel('student',function(err, result){
 		if(err) throw err;
 		console.log(result);
@@ -449,8 +450,8 @@ router.get('/createEvent', function(req, res){
 router.post('/submit_event',function(req,res){
 	//var eventTitle
 	var companyName = req.body.cName;
-	//var position = req.body.position;
-	//var type = req.body.type;
+	var position = req.body.position;
+	var type = req.body.type;
 	var branch = req.body.branch;
 	var percent_10 = req.body.percent_10;
 	var percent_12 = req.body.percent_12;
@@ -476,13 +477,13 @@ router.post('/submit_event',function(req,res){
 		additional_details: addDetails,
 		status: "open"
 	});
-
+	console.log("Company Object Created");
 	Company.createCompany(newCompany,function(err,result){
 		if(err) throw err;
 		console.log(result);
 
 	});
-	
+
 	req.flash('success_msg','Company added succesfully');
 	res.redirect('/users/dashboard');
 

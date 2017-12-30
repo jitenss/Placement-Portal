@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var CompanySchema = mongose.Schema({
+var CompanySchema = mongoose.Schema({
 	name: String,
 	/*position: {
 
