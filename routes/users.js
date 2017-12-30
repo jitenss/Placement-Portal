@@ -1,15 +1,18 @@
 var express = require('express');
+var path = require('path');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var md5 = require('md5');
 //var bcrypt = require('bcrypt')
-var User = require('../models/user');
-var Company = require('../models/company');
 var helpers = require('handlebars-helpers')();
 var async = require("async");
 var nodemailer = require("nodemailer");
 var crypto = require("crypto");
+var fileUpload = require('express-fileupload');
+
+var User = require('../models/user');
+var Company = require('../models/company');
 /*-----------------------------------------Common------------------------------------------------*/
 
 //Check authentication
@@ -448,56 +451,55 @@ router.get('/createEvent', function(req, res){
 
 //Create Event Submit
 router.post('/submit_event',function(req,res){
-	//var eventTitle
-	var companyName = req.body.cName;
-	var position = req.body.position;
-	var type = req.body.type;
-	var branch = req.body.branch;
-	var percent_10 = req.body.percent_10;
-	var percent_12 = req.body.percent_12;
-	var cpi = req.body.cpi;
-	var backlogs = req.body.backlogs;
-	var positionDetails = req.body.positiondetails;
-	var schedule = req.body.schedule;
-	var addDetails =req.body.additionaldetails;
+	// var companyName = req.body.cName;
+	// var position = req.body.position;
+	// var type = req.body.type;
+	// var branch = req.body.branch;
+	// var percent_10 = req.body.percent_10;
+	// var percent_12 = req.body.percent_12;
+	// var cpi = req.body.cpi;
+	// var backlogs = req.body.backlogs;
+	// var positionDetails = req.body.positiondetails;
+	// var schedule = req.body.schedule;
+	// var addDetails =req.body.additionaldetails;
 
-	var newCompany = new Company({
-		name: companyName,
-		//position:,
-		//type:,
-		criteria: {
-			percent_10: percent_10,
-			percent_12: percent_12,
-			cpi: cpi,
-			backlogs: backlogs,
-			branch: branch
-		},
-		position_details: positionDetails,
-		schedule: schedule,
-		additional_details: addDetails,
-		status: "open"
-	});
-	console.log("Company Object Created");
-	Company.createCompany(newCompany,function(err,result){
-		if(err) throw err;
-		console.log(result);
+	var sampleFile = req.files.companyfile;
 
-	});
+	// var newCompany = new Company({
+	// 	name: companyName,
+	// 	//position:,
+	// 	//type:,
+	// 	criteria: {
+	// 		percent_10: percent_10,
+	// 		percent_12: percent_12,
+	// 		cpi: cpi,
+	// 		backlogs: backlogs,
+	// 		branch: branch
+	// 	},
+	// 	position_details: positionDetails,
+	// 	schedule: schedule,
+	// 	additional_details: addDetails,
+	// 	status: "open"
+	// });
+	// console.log("Company Object Created");
+	// Company.createCompany(newCompany,function(err,result){
+	// 	if(err) throw err;
+	// 	console.log(result);
 
+	// });
+
+	//if(!req.files)
+	//	return res.status(400).send('No files were uploaded.');
+	
+
+	// sampleFile.mv(path.join(__dirname,companyfiles)+sampleFile+'.ods', function(err) {
+ //    	if (err)
+ //  	    return res.status(500).send(err);
+
+ //    	res.send('File uploaded!');
+	// });
 	req.flash('success_msg','Company added succesfully');
 	res.redirect('/users/dashboard');
-
-	// if(!req.files)
-	// 	return res.status(400).send('No files were uploaded.');
-
-	// let sampleFile = req.files.sampleFile;
-
-	// sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
- //    if (err)
- //      return res.status(500).send(err);
-
- //    res.send('File uploaded!');
-  // });
 });
 
 //Students

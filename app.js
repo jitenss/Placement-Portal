@@ -24,6 +24,9 @@ var user = require('./routes/users');
 //init app
 var app = express();
 
+//File Upload
+app.use(fileUpload());
+
 //BodyParser Middleware
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: false}));
@@ -71,8 +74,7 @@ app.use(expressValidator({
   }
 }));
 
-//File Upload
-app.use(fileUpload());
+
 
 //Connect flash
 app.use(flash());
