@@ -463,7 +463,7 @@ router.post('/submit_event',function(req,res){
 	var schedule = req.body.schedule;
 	var addDetails =req.body.additionaldetails;
 
-	
+
 
 	var newCompany = new Company({
 		name: companyName,
@@ -490,10 +490,10 @@ router.post('/submit_event',function(req,res){
 
 	//if(!req.files)
 	//	return res.status(400).send('No files were uploaded.');
-	
+
 	var sampleFile = req.files.companyfile;
 
-	sampleFile.mv(path.join(__dirname,companyfiles)+sampleFile+'.ods', function(err) {
+	sampleFile.mv(path.join(__dirname,'companyfiles')+sampleFile+'.ods', function(err) {
     	if (err)
   	    return res.status(500).send(err);
 

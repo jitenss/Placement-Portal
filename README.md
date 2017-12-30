@@ -11,7 +11,7 @@ This Project is designed and Developed for Training and Placement Cell, LNMIIT j
 (1) Node.Js
 (2) MongoDb
 (3) Express
-(4)Angular.Js
+(4) Angular.Js
 ```
 
 ### DataBase Design
