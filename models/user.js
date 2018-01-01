@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-//var bcrypt = require('bcryptjs');
 var md5 = require('md5');
 
 //User Schema
