@@ -48,6 +48,10 @@ var UserSchema = mongoose.Schema({
 	percent_10_value: Number,
 	percent_12_type: String,
 	percent_12_value: Number,
+	backlogs:{
+		type: Number,
+		default: 0
+	},
 	skills: [String],
 	application: [String],
 	offers: [String],

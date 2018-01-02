@@ -311,14 +311,20 @@ router.get('/aboutUs', function(req, res){
 
 //opportunities for me Profile
 router.get('/opportunitiesForMe', function(req, res){
+	var currUser = req.user;
 	console.log("On opportunities For Me");
-	res.render('opportunitiesForMe');
-});
+	console.log(currUser);
+	Company.getUserByOppurtunity(currUser,function(err,result){
+		if(err) throw err;
+		req.flash('success_msg', 'aa gya data!!!');
+		console.log(result);
+		res.render('opportunitiesForMe',{result:result});
+		});
+	});
 
 //opportunities for all Profile
 router.get('/opportunitiesForAll', function(req, res){
 	console.log("On opportunities For All");
-	res.render('opportunitiesForall');
 });
 
 //opportunities for all Profile
