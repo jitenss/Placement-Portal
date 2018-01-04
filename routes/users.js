@@ -410,12 +410,11 @@ router.post('/submit_event',function(req,res){
 	var schedule = req.body.schedule;
 	var addDetails =req.body.additionaldetails;
 
-
-
 	var newCompany = new Company({
 		name: companyName,
-		//position:,
-		//type:,
+		position: position,
+		position_details: positionDetails,
+		type: type,
 		criteria: {
 			percent_10: percent_10,
 			percent_12: percent_12,
@@ -423,7 +422,6 @@ router.post('/submit_event',function(req,res){
 			backlogs: backlogs,
 			branch: branch
 		},
-		position_details: positionDetails,
 		schedule: schedule,
 		additional_details: addDetails,
 		status: "open"
