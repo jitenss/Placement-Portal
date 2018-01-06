@@ -437,15 +437,16 @@ router.post('/submit_event',function(req,res){
 	//	return res.status(400).send('No files were uploaded.');
 
 	var sampleFile = req.files.companyfile;
-
-	sampleFile.mv(path.join(__dirname,'companyfiles')+sampleFile+'.ods', function(err) {
+	console.log(sampleFile);
+	var path1 = path.join(__dirname,'..','public','docs',companyName);
+	sampleFile.mv(path1+sampleFile.name, function(err) {
     	if (err)
   	    return res.status(500).send(err);
 
-    	res.send('File uploaded!');
+    	// res.send('File uploaded!');
 	});
 	req.flash('success_msg','Company added succesfully');
-	res.redirect('/users/dashboard');
+	res.redirect('/users/placements');
 });
 
 //Students
