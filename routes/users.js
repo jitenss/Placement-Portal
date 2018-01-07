@@ -379,11 +379,22 @@ router.post('/removeSkill', function(req, res){
 //Placement
 router.get('/placements', function(req, res){
 	console.log("On placement offers Page");
-	User.getUserByLevel('student',function(err, result){
+	var CurrUser= req.user;
+	Company.getAllCompanies(CurrUser,function(err,result){
 		if(err) throw err;
 		console.log(result);
-	res.render('placements',{layout:'layoutb.handlebars',result:result});
-	});
+		res.render('placements',{layout:'layoutb.handlebars',result:result});
+		});
+});
+//Company Detail Page
+router.get('/companyDetail', function(req, res){
+	console.log("On companyDetail offers Page");
+	var companyId = req.body.compId;
+	Company.getCompanyByid(companyId,function(err,result){
+		if(err) throw err;
+		console.log(result);
+		res.render('CompanyDetail',{layout:'layoutb.handlebars',result:result});
+		});
 });
 
 //Create Event
