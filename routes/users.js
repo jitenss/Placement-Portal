@@ -9,7 +9,21 @@ var helpers = require('handlebars-helpers')();
 var async = require("async");
 var nodemailer = require("nodemailer");
 var crypto = require("crypto");
+
 var fileUpload = require('express-fileupload');
+
+var multer  = require('multer')
+//var upload = multer({ dest: '/media/jiten/D61624941624779F/Project/Placement-Portal/companyfiles' })
+var multerConf = {
+	storage : multer.diskStorage({
+		destination: function(req,file,next){
+			next(null,'/media/jiten/D61624941624779F/Project/Placement-Portal/companyfiles');
+		},
+		filename: function(req, file, next){
+			console.log(file);
+		}
+	})
+};
 
 var User = require('../models/user');
 var Company = require('../models/company');
@@ -396,8 +410,21 @@ router.get('/createEvent', function(req, res){
 	});
 });
 
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/media/jiten/D61624941624779F/Project/Placement-Portal/companyfiles')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+});
+
+var upload = multer({ storage: storage });
+
+
 //Create Event Submit
-router.post('/submit_event',function(req,res){
+router.post('/submit_event',upload.any(),function(req,res){
 	var companyName = req.body.cName;
 	var position = req.body.position;
 	var type = req.body.type;
@@ -426,7 +453,7 @@ router.post('/submit_event',function(req,res){
 		additional_details: addDetails,
 		status: "open"
 	});
-	console.log("Company Object Created");
+	console.log(companyName);
 	Company.createCompany(newCompany,function(err,result){
 		if(err) throw err;
 		console.log(result);
@@ -436,14 +463,17 @@ router.post('/submit_event',function(req,res){
 	//if(!req.files)
 	//	return res.status(400).send('No files were uploaded.');
 
-	var sampleFile = req.files.companyfile;
+	//var sampleFile = req.files.companyfile;
 
-	sampleFile.mv(path.join(__dirname,'companyfiles')+sampleFile+'.ods', function(err) {
-    	if (err)
-  	    return res.status(500).send(err);
+	// sampleFile.mv(path.join(__dirname,'companyfiles')+sampleFile+'.ods', function(err) {
+ //    	if (err)
+ //  	    return res.status(500).send(err);
 
-    	res.send('File uploaded!');
-	});
+ //    	res.send('File uploaded!');
+	// });
+
+	
+
 	req.flash('success_msg','Company added succesfully');
 	res.redirect('/users/dashboard');
 });

@@ -50,6 +50,7 @@ var Company = module.exports = mongoose.model('Company', CompanySchema);
 module.exports.createCompany = function(newCompany,callback){
 	newCompany.save(callback);
 }
+
 module.exports.getUserByOppurtunity = function(CurrUser,callback){
 	Company.find(
 	{
