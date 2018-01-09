@@ -442,40 +442,30 @@ router.post('/submit_event',function(req,res){
 	var schedule = req.body.schedule;
 	var addDetails =req.body.additionaldetails;
 
-	var newCompany = new Company({
-		name: companyName,
-		position: position,
-		position_details: positionDetails,
-		type: type,
-		criteria: {
-			percent_10: percent_10,
-			percent_12: percent_12,
-			cpi: cpi,
-			backlogs: backlogs,
-			branch: branch
-		},
-		schedule: schedule,
-		additional_details: addDetails,
-		status: "open"
+	User.getAllUsersByOppurtunity(percent_10,percent_12,cpi,backlogs,branch,function(err,eligible){
+		var newCompany = new Company({
+				name: companyName,
+				position: position,
+				position_details: positionDetails,
+				type: type,
+				criteria: {
+					percent_10: percent_10,
+					percent_12: percent_12,
+					cpi: cpi,
+					backlogs: backlogs,
+					branch: branch
+				},
+				schedule: schedule,
+				additional_details: addDetails,
+				status: "open",
+				eligible_students: eligible
+		});
+		console.log('submit events');
+		Company.createCompany(newCompany,function(err,result){
+			if(err) throw err;
+				console.log(result);
+		});
 	});
-	console.log(companyName);
-	Company.createCompany(newCompany,function(err,result){
-		if(err) throw err;
-		console.log(result);
-
-	});
-
-
-	//var sampleFile = req.files.companyfile;
-	//console.log(sampleFile);
-	// sampleFile.mv(path.join(__dirname,'companyfiles')+sampleFile+'.pdf', function(err) {
- //    	if (err)
- //  	    return res.status(500).send(err);
-
- //    	res.send('File uploaded!');
-	// });
-
-
 	req.flash('success_msg','Company added succesfully');
 	res.redirect('/users/companyattachments');
 });

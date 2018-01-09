@@ -120,6 +120,17 @@ module.exports.updateUsersPassword = function(currUser,Newpassword,callback){
 	User.update(query,updatedDetails,callback);
 }
 
+module.exports.getAllUsersByOppurtunity = function(percent_10,percent_12,cpi,backlogs,branch,callback){
+	var query = {
+		percent_10_value: {$gte: percent_10},
+		percent_12_value: {$gte: percent_12},
+		cpi: {$gte: cpi},
+		backlogs: {$gte: backlogs},
+		branch:  [branch]
+	};
+	User.find(query,callback);
+}
+
 /*******Skills Page Function*************/
 module.exports.addNewSkill = function(currUser,updatedDetails,callback){
 	var query = {email: currUser.email};

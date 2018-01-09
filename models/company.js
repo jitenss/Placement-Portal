@@ -61,6 +61,11 @@ module.exports.getUserByOppurtunity = function(CurrUser,callback){
 	  "criteria.branch":{$all:[CurrUser.branch]}
 	},callback)
 }
+
+module.exports.updateEligibleStudents = function(companyName,students,callback){
+	Company.update({name: companyName},{$set: {eligible_students: students}},callback);
+}
+
 module.exports.getAllCompanies = function(CurrUser,callback){
 	Company.find(callback);
 }
