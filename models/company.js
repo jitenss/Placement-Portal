@@ -61,3 +61,11 @@ module.exports.getUserByOppurtunity = function(CurrUser,callback){
 	  "criteria.branch":{$all:[CurrUser.branch]}
 	},callback)
 }
+module.exports.getAllCompanies = function(CurrUser,callback){
+	Company.find(callback);
+}
+module.exports.getCompanyByid = function(id,callback){
+	console.log("Finding Company by Id");
+	var query = {id: id};
+	Company.findOne(query,callback);
+}

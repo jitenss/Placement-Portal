@@ -13,17 +13,6 @@ var crypto = require("crypto");
 var fileUpload = require('express-fileupload');
 
 var multer  = require('multer')
-//var upload = multer({ dest: '/media/jiten/D61624941624779F/Project/Placement-Portal/companyfiles' })
-var multerConf = {
-	storage : multer.diskStorage({
-		destination: function(req,file,next){
-			next(null,'/media/jiten/D61624941624779F/Project/Placement-Portal/companyfiles');
-		},
-		filename: function(req, file, next){
-			console.log(file);
-		}
-	})
-};
 
 var User = require('../models/user');
 var Company = require('../models/company');
@@ -393,11 +382,22 @@ router.post('/removeSkill', function(req, res){
 //Placement
 router.get('/placements', function(req, res){
 	console.log("On placement offers Page");
-	User.getUserByLevel('student',function(err, result){
+	var CurrUser= req.user;
+	Company.getAllCompanies(CurrUser,function(err,result){
 		if(err) throw err;
 		console.log(result);
-	res.render('placements',{layout:'layoutb.handlebars',result:result});
-	});
+		res.render('placements',{layout:'layoutb.handlebars',result:result});
+		});
+});
+//Company Detail Page
+router.get('/companyDetail', function(req, res){
+	console.log("On companyDetail offers Page");
+	var companyId = req.body.compId;
+	Company.getCompanyByid(companyId,function(err,result){
+		if(err) throw err;
+		console.log(result);
+		res.render('CompanyDetail',{layout:'layoutb.handlebars',result:result});
+		});
 });
 
 //Create Event
@@ -411,20 +411,20 @@ router.get('/createEvent', function(req, res){
 });
 
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '/media/jiten/D61624941624779F/Project/Placement-Portal/companyfiles')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
-  }
-});
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, '/media/jiten/D61624941624779F/Project/Placement-Portal/companyfiles')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now())
+//   }
+// });
 
-var upload = multer({ storage: storage });
+//var upload = multer({ storage: storage });
 
 
 //Create Event Submit
-router.post('/submit_event',upload.any(),function(req,res){
+router.post('/submit_event',function(req,res){
 	var companyName = req.body.cName;
 	var position = req.body.position;
 	var type = req.body.type;
@@ -460,22 +460,59 @@ router.post('/submit_event',upload.any(),function(req,res){
 
 	});
 
-	//if(!req.files)
-	//	return res.status(400).send('No files were uploaded.');
 
 	//var sampleFile = req.files.companyfile;
-
-	// sampleFile.mv(path.join(__dirname,'companyfiles')+sampleFile+'.ods', function(err) {
+	//console.log(sampleFile);
+	// sampleFile.mv(path.join(__dirname,'companyfiles')+sampleFile+'.pdf', function(err) {
  //    	if (err)
  //  	    return res.status(500).send(err);
 
  //    	res.send('File uploaded!');
 	// });
 
-	
 
 	req.flash('success_msg','Company added succesfully');
-	res.redirect('/users/dashboard');
+	res.redirect('/users/companyattachments');
+});
+
+// var storage = multer.diskStorage({
+// 	// destination: path.join(__dirname,'..','companyfiles'),
+// 	destination:'./companyfiles',
+// 	filename: function(req,file,cb){
+// 		cb(null,file.fieldname+'_'+Date.now()+path.extname(file.originalname));
+// 	}
+// });
+// var upload = multer({
+// 	storage: storage
+// }).single('companyfile');
+
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './companyfiles/');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now());
+  }
+});
+var upload = multer({
+	storage: storage
+});
+
+//Comapany Attachments
+router.get('/companyattachments',function(req,res){
+	res.render('addCompanyAttachments');
+});
+
+//Company Attachments
+router.post('/companyattachmentsUpload',upload.single('file'),(req,res)=>{
+	// upload(req,res,(err)=> {
+	// 	if(err) throw err;
+	// 	else{
+			console.log(req.files);
+			res.redirect('/users/Dashboard');
+	// 	}
+
+	// });
 });
 
 //Students

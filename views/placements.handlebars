@@ -21,16 +21,25 @@
         <tbody>
           {{#each result}}
             <tr>
-                <td>{{this.rollno}}</td>
                 <td>{{this.name}}</td>
-                <td>B.TECH-{{this.branch}}</td>
-                <td>{{this.cpi}}</td>
-                <td>{{this.percent_10}}</td>
-                <td>{{this.cpi}}</td>
-                <td>{{this.percent_12}}</td>
-                <td>{{this.cpi}}</td>
-                <td>{{this.percent_12}}</td>
-                <td>{{this.cpi}}</td>
+                <td>{{this.position}}</td>
+                <td>{{this.status}}</td>
+                <td>{{this.schedule}}</td>
+                <td>
+                  {{#each this.criteria.branch}}
+                     {{this}}
+                  {{/each}}
+                </td>
+                <td>{{this.eligible_students.length}}</td>
+                <td>{{this.registered_students.length}}</td>
+                <td>{{this.offered.length}}</td>
+                <td>{{this.offered.length}}</td>
+                <td>
+                  <form class="" action="/users/companyDetail" method="get">
+                    <input type="hidden" name="compId" value="{{this.id}}">
+                    <button type="submit" class="btn btn-primary btn-sm">View</button>
+                  </form>
+                </td>
             </tr>
               {{/each}}
 

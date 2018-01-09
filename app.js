@@ -11,12 +11,14 @@ var passport = require('passport');
 var localStrategy = require('passport-local-roles').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var multer = require('multer');
 mongoose.Promise = global.Promise;
 
 mongoose.connect("mongodb://localhost:27017/placement-portal", {
    useMongoClient: true,
 });
- var db = mongoose.connection;
+var db = mongoose.connection;
+
 
 var route = require('./routes/index');
 var user = require('./routes/users');
@@ -73,8 +75,6 @@ app.use(expressValidator({
     };
   }
 }));
-
-
 
 //Connect flash
 app.use(flash());
