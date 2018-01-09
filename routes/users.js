@@ -395,13 +395,21 @@ router.get('/placements', function(req, res){
 		});
 });
 //Company Detail Page
-router.get('/companyDetail', function(req, res){
+router.post('/companyDetail', function(req, res){
 	console.log("On companyDetail offers Page");
 	var companyId = req.body.compId;
+	console.log(companyId);
 	Company.getCompanyByid(companyId,function(err,result){
 		if(err) throw err;
 		console.log(result);
-		res.render('CompanyDetail',{layout:'layoutb.handlebars',result:result});
+		console.log(req.user);
+
+		if(req.user.user_level == 'student'){
+			res.render('CompanyDetail',{result:result});
+		}
+		else {
+			res.render('CompanyDetail',{layout:'layoutb.handlebars',result:result});
+		}
 		});
 });
 
