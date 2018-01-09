@@ -14,10 +14,27 @@
         <tbody>
           {{#each result}}
             <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.position}}</td>
-                <td></td>
-                <td>{{this.schedule}}</td>
+                <td>
+                  {{this.name}}
+                </td>
+                <td>
+                  {{this.position}}
+                </td>
+                <td>
+                  {{this.schedule}}
+                </td>
+                <td>
+                  {{this.schedule}}
+                </td>
+                <td>
+                  {{this.type}}
+                </td>
+                 <td>
+                   <form class="" action="/users/companyDetail" method="post">
+                     <input type="hidden" name="compId" value="{{this.id}}">
+                     <button type="submit" class="btn btn-primary btm-sm">view</button>
+                   </form>
+                 </td>
             </tr>
               {{/each}}
         </tbody>

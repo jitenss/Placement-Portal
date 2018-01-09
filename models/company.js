@@ -71,6 +71,6 @@ module.exports.getAllCompanies = function(CurrUser,callback){
 }
 module.exports.getCompanyByid = function(id,callback){
 	console.log("Finding Company by Id");
-	var query = {id: id};
+	var query = {_id: id};
 	Company.findOne(query,callback);
 }

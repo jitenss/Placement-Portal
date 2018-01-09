@@ -1,5 +1,46 @@
 <div class="conteudo-box">
     <div class="conteudo-boxInner">
-      Event Name : {{result.name}}
+      <div class="">
+        <span style="font-size:1.5em;font-weight:bold;">Event Name : </span>
+        <span style="font-size:1.5em;">{{result.name}}</span>
+      </div>
+      <div class="">
+        <span style="font-size:1.5em;font-weight:bold;">Position : </span>
+        <span style="font-size:1.5em;">{{result.position}}</span>
+      </div>
+      <div class="">
+        <span style="font-size:1.5em;font-weight:bold;">percent_10: </span>
+        <span style="font-size:1.5em;">{{result.criteria.percent_10}}</span>
+      </div>
+      <div class="">
+        <span style="font-size:1.5em;font-weight:bold;">percent_12 : </span>
+        <span style="font-size:1.5em;">{{result.criteria.percent_10}}</span>
+      </div>
+      <div class="">
+        <span style="font-size:1.5em;font-weight:bold;">cpi : </span>
+        <span style="font-size:1.5em;">{{result.criteria.cpi}}</span>
+      </div>
+      <div class="">
+        <span style="font-size:1.5em;font-weight:bold;">backlogs : </span>
+        <span style="font-size:1.5em;">{{result.criteria.backlogs}}</span>
+      </div>
+      <div class="">
+        <span style="font-size:1.5em;font-weight:bold;">branch : </span>
+        <span style="font-size:1.5em;">{{result.criteria.branch}}</span>
+      </div>
+      <div class="">
+        <span style="font-size:1.5em;font-weight:bold;">schedule : </span>
+        <span style="font-size:1.5em;">{{result.schedule}}</span>
+      </div>
+      <div class="">
+        <span style="font-size:1.5em;font-weight:bold;">additional_details : </span>
+        <span style="font-size:1.5em;">{{result.additional_details}}</span>
+      </div>
+      <div class="">
+        <form class="" action="/users/toapply" method="get">
+          <button type="submit" class="btn btn-primary btn-lg pull-right" name="button"><i class="fa fa-note"></i> Apply Now</button>
+        </form>
+      </div>
+
     </div>
 </div>
