@@ -412,7 +412,11 @@ router.post('/companyDetail', function(req, res){
 		}
 		});
 });
-
+//to Apply
+router.get('/toapply', function(req, res){
+	console.log("On to apply offers Page");
+			res.render('toapply');
+});
 //Create Event
 router.get('/createEvent', function(req, res){
 	console.log("On Create Event Page");
