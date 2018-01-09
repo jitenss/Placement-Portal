@@ -328,6 +328,11 @@ router.get('/opportunitiesForMe', function(req, res){
 //opportunities for all Profile
 router.get('/opportunitiesForAll', function(req, res){
 	console.log("On opportunities For All");
+	var currUser = req.user;
+	Company.getAllCompanies(currUser,function(err,result){
+		if(err) throw err;
+		res.render('opportunitiesForall',{result: result});
+	});
 });
 
 //opportunities for all Profile
