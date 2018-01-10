@@ -1,7 +1,9 @@
 <div class="conteudo-box">
     <div class="conteudo-boxInner">
       <div class="create">
-        <a href="/users/createEvent"><h2>Create Placement Event <i class="fa fa-plus"></i></h2></a>
+        <form class="" action="/users/createEvent" method="post">
+          <button type="submit"><h2>Create Placement Event <i class="fa fa-plus"></i></h2></button>
+        </form>
       </div>
   <table id="example" class="display" width="100%" cellspacing="0">
         <thead>
@@ -35,7 +37,7 @@
                 <td>{{this.offered.length}}</td>
                 <td>{{this.offered.length}}</td>
                 <td>
-                  <form class="" action="/users/companyDetail" method="post">
+                  <form class="" action="/users/companydetails" method="post">
                     <input type="hidden" name="compId" value="{{this.id}}">
                     <button type="submit" class="btn btn-primary btn-sm">View</button>
                   </form>

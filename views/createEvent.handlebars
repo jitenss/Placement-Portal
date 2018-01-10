@@ -7,16 +7,16 @@
                   <h2 class="fs-title">Event Details</h2>
 
                   <label for="">Company Name</label>
-                    <input type="text" name="cName" placeholder="Company Name"/>
+                    <input type="text" value="{{result.name}}" name="cName" placeholder="Company Name"/>
 
                   <label for="">Position</label>
-                    <textarea type="text" name="position" placeholder="Position"></textarea>
+                    <textarea type="text" name="position" value="{{result.position}}" placeholder="Position"></textarea>
 
                   <label for="">Position Details</label>
-                  <textarea type="text" name="positiondetails" placeholder="Details"></textarea>
+                  <textarea type="text" name="positiondetails" value="{{result.position_details}}" placeholder="Details"></textarea>
 
                   <label for="">Type</label>
-                    <select name="type">
+                    <select name="type" value="{{result.type}}">
                       <option value="fte">FTE</option>
                       <option value="sli">SLI</option>
                       <option value="ftesli">FTE+SLI</option>
@@ -43,27 +43,27 @@
 
                   <div class="col-md-6" style="padding-left: 0;">
                      <label for="">10th Percentage</label>
-                    <input type="text" name="percent_10" placeholder="10th Percent"/>
+                    <input type="text" name="percent_10"  value="{{result.criteria.percent_10}}" placeholder="10th Percent"/>
                   </div>
 
                   <div class="col-md-6" style="padding-right: 0;">
                     <label for="">12th Percentage</label>
-                    <input type="text" name="percent_12" placeholder="12th Percent"/>
+                    <input type="text" name="percent_12" value="{{result.criteria.percent_10}}" placeholder="12th Percent"/>
                   </div>
 
 
                   <div class="col-md-6" style="padding-left: 0;">
                      <label for="">CPI</label>
-                    <input type="text" name="cpi" placeholder="CPI"/>
+                    <input type="text" name="cpi" value="{{result.criteria.cpi}}" placeholder="CPI"/>
                   </div>
 
                   <div class="col-md-6" style="padding-right: 0;">
                      <label for="">Active Backlogs</label>
-                    <input type="number" name="backlogs" placeholder="Number of backlogs"/>
+                    <input type="number" name="backlogs" value="{{result.criteria.backlogs}}" placeholder="Number of backlogs"/>
                   </div>
 
                   <label for="">Schedule</label>
-                  <textarea type="text" name="schedule" placeholder="Schedule"></textarea>
+                  <textarea type="text" name="schedule" value="{{result.schedule}}" placeholder="Schedule"></textarea>
 
                   <input type="button" name="next" class="next action-button" value="Next"/>
               </fieldset>
@@ -79,7 +79,7 @@
                   <label for="">End Date</label>
                     <input type="date" name="endDate" placeholder="End Date"/>
                   <label for="">Additional Details</label>
-                  <textarea name="additionaldetails"  placeholder="Additional Details"></textarea>
+                  <textarea name="additionaldetails"  value="{{result.additional_details}}" placeholder="Additional Details"></textarea>
                   <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                   <input type="submit" class="submit action-button" value="Submit"/>
               </fieldset>
