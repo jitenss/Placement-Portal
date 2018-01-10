@@ -323,8 +323,8 @@ router.get('/opportunitiesForMe', function(req, res){
 		req.flash('success_msg', 'aa gya data!!!');
 		console.log(result);
 		res.render('opportunitiesForMe',{result:result});
-		});
 	});
+});
 
 //opportunities for all Profile
 router.get('/opportunitiesForAll', function(req, res){
@@ -336,6 +336,7 @@ router.get('/opportunitiesForAll', function(req, res){
 	});
 });
 
+<<<<<<< HEAD
 //opportunities for all Profile
 router.get('/applications', function(req, res){
 	console.log("On Aplications page");
@@ -394,6 +395,8 @@ router.post('/companyDetail2', function(req, res){
 		}
 		});
 });
+=======
+>>>>>>> 4c631ef735a55c939342f34e30dccf6ca9740635
 //Company Detail Page on opportunity for all
 router.post('/companyDetail1', function(req, res){
 	console.log("On companyDetail offers Page");
@@ -425,9 +428,6 @@ router.post('/companyDetail', function(req, res){
 		if(req.user.user_level == 'student'){
 			res.render('CompanyDetail',{result:result,companyid: companyId});
 		}
-		else {
-			res.render('CompanyDetail',{layout:'layoutb.handlebars',result:result});
-		}
 	});
 });
 //to Apply on opportunity for all
@@ -438,14 +438,15 @@ router.get('/apply/:compId',function(req,res){
 		if(err) throw err;
 		var currUser = req.user;
 		//console.log(company);
+		console.log(currUser);
 		Company.updateUsersForRegisteration(cid,currUser,function(err,result){
 			if(err) throw err;
-			console.log(company);
+			console.log(result);
 		});
 		User.applyUserForCompany(currUser,cid,function(err,result){
 			if(err) throw err;
-			res.redirect('/users/toapply');
 			console.log(currUser);
+			res.redirect('/users/toapply');
 		});
 	});
 });
@@ -454,6 +455,18 @@ router.get('/apply/:compId',function(req,res){
 router.get('/toapply', function(req, res){
 	console.log("On to apply offers Page");
 			res.render('toapply');
+});
+
+//applications
+router.get('/applications', function(req, res){
+	console.log("On Aplications page");
+	res.render('applications');
+});
+
+//offers page
+router.get('/offers', function(req, res){
+	console.log("On Job offers Page");
+	res.render('offers');
 });
 
 //Skills for all Profile
@@ -506,13 +519,17 @@ router.get('/placements', function(req, res){
 		});
 });
 
-//Create Event
-router.get('/createEvent', function(req, res){
+//Create Event display
+router.post('/createEvent', function(req, res){
 	console.log("On Create Event Page");
+	var companyid = req.body.id;
 	User.getUserByLevel('student',function(err, result){
 		if(err) throw err;
-		console.log(result);
-		res.render('createEvent',{layout:'layoutb.handlebars',result:result});
+		//console.log("result aa gaya",companyid);
+		Company.getCompanyByid(companyid,function(err,result){
+			//console.log(result);
+			res.render('createEvent',{layout:'layoutb.handlebars',result:result});
+		});
 	});
 });
 
@@ -650,6 +667,23 @@ router.get('/internOffers', function(req, res){
 router.get('/categories', function(req, res){
 	console.log("On Categories Page Page");
 	res.render('categories', {layout:'layoutb.handlebars'});
+});
+
+//View each company's detail
+router.post('/companydetails',function(req,res){
+	var companyId = req.body.compId;
+	Company.getCompanyByid(companyId,function(err,result){
+		res.render('companyDetailsAdmin',{layout:'layoutb.handlebars',result:result,companyid: companyId});
+	});
+});
+
+//Show eligible students
+router.post('/showeligible',function(req,res){
+	var companyId = req.body.id;
+	Company.getCompanyByid(companyId,function(err,result){
+		console.log(companyId);
+		res.render('showEligibleStudents',{layout:'layoutb.handlebars',result:result,companyid: companyId});
+	});
 });
 
 module.exports = router;
