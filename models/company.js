@@ -70,11 +70,13 @@ module.exports.getAllCompanies = function(CurrUser,callback){
 	Company.find(callback);
 }
 module.exports.getCompanyByid = function(id,callback){
-	console.log("Finding Company by Id");
+	//console.log("Finding Company by Id");
 	var query = {_id: id};
 	Company.findOne(query,callback);
 }
 
 module.exports.updateUsersForRegisteration = function(cid,currUser,callback){
-	Company.update({_id: cid},{$push:{registered_students: currUser.email},callback});
+	console.log(cid);
+	console.log(currUser.email);
+	Company.update({_id: cid},{$push: {registered_students: currUser.email}},callback);
 }
