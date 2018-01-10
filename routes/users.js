@@ -339,14 +339,61 @@ router.get('/opportunitiesForAll', function(req, res){
 //opportunities for all Profile
 router.get('/applications', function(req, res){
 	console.log("On Aplications page");
-	res.render('applications');
+	var currUser = req.user;
+	var appl=[];
+	var appl1=[];
+	appl=req.user.application;
+	// for (var i = 0; i < application.length; i++) {
+	// 	appli[i].push(application[i]);
+	// }
+	for (var i = 0; i < appl.length; i++) {
+		Company.getCompanyByid(appl[i],function(err,result){
+			if(err) throw err;
+			else {
+				appl1.push(result);
+			}
+			});
+	}
+	res.render('applications',{result:appl1});
 });
 //opportunities for all Profile
 router.get('/offers', function(req, res){
 	console.log("On Job offers Page");
-	res.render('offers');
+	var currUser = req.user;
+	var appl=[];
+	var appl1=[];
+	appl=req.user.offers;
+	// for (var i = 0; i < application.length; i++) {
+	// 	appli[i].push(application[i]);
+	// }
+	for (var i = 0; i < appl.length; i++) {
+		Company.getCompanyByid(appl[i],function(err,result){
+			if(err) throw err;
+			else {
+				appl1.push(result);
+			}
+			});
+	}
+	res.render('applications',{result:appl1});
 });
+//Company Detail Page on Admin Placement Events
+router.post('/companyDetail2', function(req, res){
+	console.log("On companyDetail offers Page");
+	var companyId = req.body.compId;
+	console.log(companyId);
+	Company.getCompanyByid(companyId,function(err,result){
+		if(err) throw err;
+		//console.log(result);
+		//console.log(req.user);
 
+		if(req.user.user_level == 'student'){
+			res.render('CompanyDetail2',{result:result,companyid: companyId});
+		}
+		else {
+			res.render('CompanyDetail2',{layout:'layoutb.handlebars',result:result});
+		}
+		});
+});
 //Company Detail Page on opportunity for all
 router.post('/companyDetail1', function(req, res){
 	console.log("On companyDetail offers Page");
