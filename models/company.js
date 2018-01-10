@@ -57,8 +57,8 @@ module.exports.getUserByOppurtunity = function(CurrUser,callback){
 	  "criteria.percent_10":{$lte:CurrUser.percent_10_value},
 	  "criteria.percent_12":{$lte:CurrUser.percent_12_value},
 	  "criteria.cpi":{$lte:CurrUser.cpi},
-	  "criteria.backlogs":{$gte:CurrUser.backlogs},
-	  "criteria.branch":{$all:[CurrUser.branch]}
+	  // "criteria.backlogs":{$gte:CurrUser.backlogs},
+	  // "criteria.branch":{$all:[CurrUser.branch]}
 	},callback)
 }
 

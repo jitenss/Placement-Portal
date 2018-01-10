@@ -47,21 +47,60 @@
           <label for="email">Semester Wise SPI : </label>
           <div class="semWise">
               <div class="relative">
-                <span>Sem 1 :</span><input name="spi_1" value='{{user.spi.spi_1}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 2 :</span><input name="spi_2" value='{{user.spi.spi_2}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 3 :</span><input name="spi_3" value='{{user.spi.spi_3}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 4 :</span><input name="spi_4" value='{{user.spi.spi_4}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 5 :</span><input name="spi_5" value='{{user.spi.spi_5}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 6 :</span><input name="spi_6" value='{{user.spi.spi_6}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 7 :</span><input name="spi_7" value='{{user.spi.spi_7}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your SPI here">
-                <span>Sem 8 :</span><input name="spi_8" value='{{user.spi.spi_8}}' class="form-control" id="name" type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your SPI here">
+                <span>Sem 1 :</span>
+                  <input name="spi_1" value='{{user.spi.spi_1}}'
+                      class="form-control" id="name" type="text"
+                      pattern="[0-9]"  autocomplete=""
+                      placeholder="Type Your SPI here">
+                <span>Sem 2 :</span>
+                  <input name="spi_2" value='{{user.spi.spi_2}}'
+                        class="form-control" id="name" type="text"
+                        pattern="[0-9]"  autocomplete=""
+                        placeholder="Type Your SPI here">
+                <span>Sem 3 :</span>
+                  <input name="spi_3" value='{{user.spi.spi_3}}'
+                        class="form-control" id="name" type="text"
+                        pattern="[0-9]"  autocomplete=""
+                        placeholder="Type Your SPI here">
+                <span>Sem 4 :</span>
+                  <input name="spi_4" value='{{user.spi.spi_4}}'
+                        class="form-control" id="name" type="text"
+                        pattern="[0-9]"  autocomplete=""
+                       placeholder="Type Your SPI here">
+                <span>Sem 5 :</span>
+                  <input name="spi_5" value='{{user.spi.spi_5}}'
+                        class="form-control" id="name" type="text"
+                        pattern="[0-9]"  autocomplete=""
+                        placeholder="Type Your SPI here">
+                <span>Sem 6 :</span>
+                  <input name="spi_6" value='{{user.spi.spi_6}}'
+                        class="form-control" id="name" type="text"
+                        pattern="[0-9]"  autocomplete=""
+                        placeholder="Type Your SPI here">
+                <span>Sem 7 :</span>
+                  <input name="spi_7" value='{{user.spi.spi_7}}'
+                        class="form-control" id="name" type="text"
+                        pattern="[0-9]"  autocomplete=""
+                        placeholder="Type Your SPI here">
+                <span>Sem 8 :</span>
+                  <input name="spi_8" value='{{user.spi.spi_8}}'
+                        class="form-control" id="name" type="text"
+                        pattern="[0-9]"  autocomplete=""
+                        placeholder="Type Your SPI here">
               </div>
             </div>
         </div>
         <div class="form-group">
           <label for="email">Current CPI : </label>
           <div class="relative">
-            <input name="cpi" class="form-control" id="name"  value='{{user.cpi}}' type="text" pattern="[0-9]+.[0-9][0-9]"  autocomplete="" placeholder="Type Your CPI here">
+            <input name="cpi" class="form-control" id="name"  value='{{user.cpi}}' type="text" pattern="[0-9]"  autocomplete="" placeholder="Type Your CPI here">
+            <i class="fa fa-user"></i>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Current Number of backlogs </label>
+          <div class="relative">
+            <input name="backlogs" class="form-control" id="name"  value='{{user.backlogs}}' type="text"  autocomplete="" placeholder="Type Your Current number of backlogs">
             <i class="fa fa-user"></i>
           </div>
         </div>

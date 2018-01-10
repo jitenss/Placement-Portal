@@ -121,12 +121,14 @@ module.exports.updateUsersPassword = function(currUser,Newpassword,callback){
 }
 
 module.exports.getAllUsersByOppurtunity = function(percent_10,percent_12,cpi,backlogs,branch,callback){
+	console.log(percent_10+ " "+percent_12+" "+cpi+" "+backlogs+" "+branch);
 	var query = {
-		percent_10_value: {$gte: percent_10},
-		percent_12_value: {$gte: percent_12},
-		cpi: {$gte: cpi},
-		backlogs: {$gte: backlogs},
-		branch:  [branch]
+		"percent_10_value": {$gte: percent_10},
+		"percent_12_value": {$gte: percent_12},
+		"cpi": {$gte: cpi},
+		"backlogs": {$lte: backlogs},
+		"branch"
+
 	};
 	User.find(query,callback);
 }

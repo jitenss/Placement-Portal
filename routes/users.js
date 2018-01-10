@@ -274,7 +274,7 @@ router.post('/submit_academic',ensureAuthenticated, function(req,res){
 	var spi_7 = req.body.spi_7;
 	var spi_8 = req.body.spi_8;
 	var cpi = req.body.cpi;
-
+	var backlogs = req.body.backlogs;
 	var currUser = req.user;
 	var updatedDetails = {
 		branch: branch,
@@ -292,6 +292,7 @@ router.post('/submit_academic',ensureAuthenticated, function(req,res){
 			spi_7: spi_7,
 			spi_8: spi_8,
 		},
+		backlogs : backlogs,
 		cpi: cpi,
 		register_level: 2
 	};
@@ -454,7 +455,12 @@ router.post('/submit_event',function(req,res){
 	var schedule = req.body.schedule;
 	var addDetails =req.body.additionaldetails;
 
+	var eligibleStudents = [];
 	User.getAllUsersByOppurtunity(percent_10,percent_12,cpi,backlogs,branch,function(err,eligible){
+		for (var i = 0; i < eligible.length; i++) {
+			eligibleStudents.push(eligible[i]._id);
+		};
+
 		var newCompany = new Company({
 				name: companyName,
 				position: position,
@@ -470,7 +476,7 @@ router.post('/submit_event',function(req,res){
 				schedule: schedule,
 				additional_details: addDetails,
 				status: "open",
-				eligible_students: eligible
+				eligible_students: eligibleStudents
 		});
 		console.log('submit events');
 		Company.createCompany(newCompany,function(err,result){
