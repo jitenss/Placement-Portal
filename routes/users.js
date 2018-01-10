@@ -381,12 +381,12 @@ router.post('/companyDetail', function(req, res){
 		else {
 			res.render('CompanyDetail',{layout:'layoutb.handlebars',result:result});
 		}
-		});
+	});
 });
 //to Apply on opportunity for all
 router.get('/apply/:compId',function(req,res){
 	var cid = req.params.compId;
-	console.log(cid);
+	//console.log(cid);
 	Company.getCompanyByid(cid,function(err,company){
 		if(err) throw err;
 		var currUser = req.user;
