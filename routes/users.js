@@ -348,6 +348,24 @@ router.get('/offers', function(req, res){
 });
 
 //Company Detail Page on opportunity for all
+router.post('/companyDetail1', function(req, res){
+	console.log("On companyDetail offers Page");
+	var companyId = req.body.compId;
+	console.log(companyId);
+	Company.getCompanyByid(companyId,function(err,result){
+		if(err) throw err;
+		//console.log(result);
+		//console.log(req.user);
+
+		if(req.user.user_level == 'student'){
+			res.render('CompanyDetail1',{result:result,companyid: companyId});
+		}
+		else {
+			res.render('CompanyDetail1',{layout:'layoutb.handlebars',result:result});
+		}
+		});
+});
+//Company Detail Page on opportunity for me
 router.post('/companyDetail', function(req, res){
 	console.log("On companyDetail offers Page");
 	var companyId = req.body.compId;
@@ -365,7 +383,6 @@ router.post('/companyDetail', function(req, res){
 		}
 		});
 });
-
 //to Apply on opportunity for all
 router.get('/apply/:compId',function(req,res){
 	var cid = req.params.compId;
