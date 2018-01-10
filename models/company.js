@@ -74,3 +74,7 @@ module.exports.getCompanyByid = function(id,callback){
 	var query = {_id: id};
 	Company.findOne(query,callback);
 }
+
+module.exports.updateUsersForRegisteration = function(cid,currUser,callback){
+	Company.update({_id: cid},{$push:{registered_students: currUser.email},callback});
+}

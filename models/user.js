@@ -127,10 +127,13 @@ module.exports.getAllUsersByOppurtunity = function(percent_10,percent_12,cpi,bac
 		"percent_12_value": {$gte: percent_12},
 		"cpi": {$gte: cpi},
 		"backlogs": {$lte: backlogs},
-		"branch"
-
+		//"branch"
 	};
 	User.find(query,callback);
+}
+
+module.exports.applyUserForCompany = function(currUser,companyid,callback){
+	User.update({email: currUser.email},{$push:{application: companyid}},callback);
 }
 
 /*******Skills Page Function*************/

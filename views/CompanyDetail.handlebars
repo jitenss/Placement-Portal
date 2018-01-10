@@ -1,3 +1,4 @@
+
 <div class="conteudo-box">
     <div class="conteudo-boxInner">
       <div class="">
@@ -37,8 +38,9 @@
         <span style="font-size:1.5em;">{{result.additional_details}}</span>
       </div>
       <div class="">
-        <form class="" action="/users/toapply" method="get">
-          <button type="submit" class="btn btn-primary btn-lg pull-right" name="button"><i class="fa fa-note"></i> Apply Now</button>
+        <form class="" action="/users/apply/{{companyid}}" method="get">
+         <!--  <input type="hidden" name="id" value={{companyid}}> -->
+          <button type="submit" class="btn btn-primary btn-lg pull-right"><i class="fa fa-note"></i> Apply Now</button>
         </form>
       </div>
 

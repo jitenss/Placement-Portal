@@ -346,6 +346,52 @@ router.get('/offers', function(req, res){
 	console.log("On Job offers Page");
 	res.render('offers');
 });
+
+//Company Detail Page on opportunity for all
+router.post('/companyDetail', function(req, res){
+	console.log("On companyDetail offers Page");
+	var companyId = req.body.compId;
+	console.log(companyId);
+	Company.getCompanyByid(companyId,function(err,result){
+		if(err) throw err;
+		//console.log(result);
+		//console.log(req.user);
+
+		if(req.user.user_level == 'student'){
+			res.render('CompanyDetail',{result:result,companyid: companyId});
+		}
+		else {
+			res.render('CompanyDetail',{layout:'layoutb.handlebars',result:result});
+		}
+		});
+});
+
+//to Apply on opportunity for all
+router.get('/apply/:compId',function(req,res){
+	var cid = req.params.compId;
+	console.log(cid);
+	Company.getCompanyByid(cid,function(err,company){
+		if(err) throw err;
+		var currUser = req.user;
+		//console.log(company);
+		Company.updateUsersForRegisteration(cid,currUser,function(err,result){
+			if(err) throw err;
+			console.log(company);
+		});
+		User.applyUserForCompany(currUser,cid,function(err,result){
+			if(err) throw err;
+			res.redirect('/users/toapply');
+			console.log(currUser);
+		});
+	});
+});
+
+//to attch resume on opportunity for all
+router.get('/toapply', function(req, res){
+	console.log("On to apply offers Page");
+			res.render('toapply');
+});
+
 //Skills for all Profile
 router.get('/skills', function(req, res){
 	console.log("On Skills Page");
@@ -395,29 +441,7 @@ router.get('/placements', function(req, res){
 		res.render('placements',{layout:'layoutb.handlebars',result:result});
 		});
 });
-//Company Detail Page
-router.post('/companyDetail', function(req, res){
-	console.log("On companyDetail offers Page");
-	var companyId = req.body.compId;
-	console.log(companyId);
-	Company.getCompanyByid(companyId,function(err,result){
-		if(err) throw err;
-		console.log(result);
-		console.log(req.user);
 
-		if(req.user.user_level == 'student'){
-			res.render('CompanyDetail',{result:result});
-		}
-		else {
-			res.render('CompanyDetail',{layout:'layoutb.handlebars',result:result});
-		}
-		});
-});
-//to Apply
-router.get('/toapply', function(req, res){
-	console.log("On to apply offers Page");
-			res.render('toapply');
-});
 //Create Event
 router.get('/createEvent', function(req, res){
 	console.log("On Create Event Page");
