@@ -126,7 +126,7 @@ module.exports.getAllUsersByOppurtunity = function(percent_10,percent_12,cpi,bac
 		"percent_10_value": {$gte: percent_10},
 		"percent_12_value": {$gte: percent_12},
 		"cpi": {$gte: cpi},
-		"backlogs": {$lte: backlogs},
+		"backlogs": {$lte: backlogs}
 		//"branch"
 	};
 	User.find(query,callback);
