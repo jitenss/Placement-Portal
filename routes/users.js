@@ -619,9 +619,17 @@ router.post('/companydetails',function(req,res){
 //Show eligible students
 router.post('/showeligible',function(req,res){
 	var companyId = req.body.id;
-	Company.getCompanyByid(companyId,function(err,result){
-		console.log(companyId);
-		res.render('showEligibleStudents',{layout:'layoutb.handlebars',result:result,companyid: companyId});
+	Company.getCompanyByid(companyId,function(err,company){
+		console.log(company.eligible_students.length);
+		var students = [];
+		for(var i = 0;i<company.eligible_students.length;i++)
+		{
+			User.getUserById(company.eligible_students[i],function(err,result){
+				students.push(result);
+				console.log(result);
+			});
+		}
+		res.render('showEligibleStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
 	});
 });
 
