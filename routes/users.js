@@ -705,5 +705,21 @@ router.post('/showeligible',function(req,res){
 		res.render('showEligibleStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
 	});
 });
-
+//Show Registered students
+router.post('/showeligible',function(req,res){
+	var companyId = req.body.id;
+	Company.getCompanyByid(companyId,function(err,company){
+		console.log(company);
+		var students = [];
+		for(var i = 0;i<company.registered_students.length;i++)
+		{
+			User.getUserById(company.registered_students[i],function(err,result){
+				students.push(result);
+				console.log("Yha Pahuch Gya !");
+				console.log(result);
+			});
+		}
+		res.render('showRegisteredStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
+	});
+});
 module.exports = router;
