@@ -520,6 +520,18 @@ router.get('/placements', function(req, res){
 });
 
 //Create Event display
+router.get('/createEvent', function(req, res){
+	console.log("On Create Event Page");
+	var companyid = req.body.id;
+	User.getUserByLevel('student',function(err, result){
+		if(err) throw err;
+		//console.log("result aa gaya",companyid);
+		Company.getCompanyByid(companyid,function(err,result){
+			//console.log(result);
+			res.render('createEvent',{layout:'layoutb.handlebars',result:result});
+		});
+	});
+});
 router.post('/createEvent', function(req, res){
 	console.log("On Create Event Page");
 	var companyid = req.body.id;
@@ -532,7 +544,6 @@ router.post('/createEvent', function(req, res){
 		});
 	});
 });
-
 
 // var storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
