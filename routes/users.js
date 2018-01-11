@@ -336,7 +336,7 @@ router.get('/opportunitiesForAll', function(req, res){
 	});
 });
 
-<<<<<<< HEAD
+
 //opportunities for all Profile
 router.get('/applications', function(req, res){
 	console.log("On Aplications page");
@@ -391,12 +391,11 @@ router.post('/companyDetail2', function(req, res){
 			res.render('CompanyDetail2',{result:result,companyid: companyId});
 		}
 		else {
-			res.render('CompanyDetail2',{layout:'layoutb.handlebars',result:result});
+			res.render('companyDetailsAdmin',{layout:'layoutb.handlebars',result:result});
 		}
 		});
 });
-=======
->>>>>>> 4c631ef735a55c939342f34e30dccf6ca9740635
+
 //Company Detail Page on opportunity for all
 router.post('/companyDetail1', function(req, res){
 	console.log("On companyDetail offers Page");
@@ -450,6 +449,7 @@ router.get('/apply/:compId',function(req,res){
 		});
 	});
 });
+//----------Show Eligible Student List----------
 
 //to attch resume on opportunity for all
 router.get('/toapply', function(req, res){
@@ -692,12 +692,13 @@ router.post('/companydetails',function(req,res){
 router.post('/showeligible',function(req,res){
 	var companyId = req.body.id;
 	Company.getCompanyByid(companyId,function(err,company){
-		console.log(company.eligible_students.length);
+		console.log(company);
 		var students = [];
 		for(var i = 0;i<company.eligible_students.length;i++)
 		{
 			User.getUserById(company.eligible_students[i],function(err,result){
 				students.push(result);
+				console.log("Yha Pahuch Gya !");
 				console.log(result);
 			});
 		}

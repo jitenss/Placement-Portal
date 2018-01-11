@@ -70,8 +70,8 @@ module.exports.getAllCompanies = function(CurrUser,callback){
 	Company.find(callback);
 }
 module.exports.getCompanyByid = function(id,callback){
-	//console.log("Finding Company by Id");
-	var query = {_id: id};
+	console.log("Finding Company by Id");
+	var query = {id:id};
 	Company.findOne(query,callback);
 }
 
