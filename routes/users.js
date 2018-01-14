@@ -335,8 +335,6 @@ router.get('/opportunitiesForAll', function(req, res){
 		res.render('opportunitiesForall',{result: result});
 	});
 });
-
-<<<<<<< HEAD
 //opportunities for all Profile
 router.get('/applications', function(req, res){
 	console.log("On Aplications page");
@@ -395,8 +393,7 @@ router.post('/companyDetail2', function(req, res){
 		}
 		});
 });
-=======
->>>>>>> 4c631ef735a55c939342f34e30dccf6ca9740635
+
 //Company Detail Page on opportunity for all
 router.post('/companyDetail1', function(req, res){
 	console.log("On companyDetail offers Page");
@@ -519,8 +516,22 @@ router.get('/placements', function(req, res){
 		});
 });
 
-//Create Event display
+//Edit Event display
 router.post('/createEvent', function(req, res){
+	console.log("On Create Event Page");
+	var companyid = req.body.id;
+	User.getUserByLevel('student',function(err, result){
+		if(err) throw err;
+		//console.log("result aa gaya",companyid);
+		Company.getCompanyByid(companyid,function(err,result){
+			//console.log(result);
+			res.render('createEvent',{layout:'layoutb.handlebars',result:result});
+		});
+	});
+});
+
+//Create Event display 
+router.get('/createEvent', function(req, res){
 	console.log("On Create Event Page");
 	var companyid = req.body.id;
 	User.getUserByLevel('student',function(err, result){
@@ -681,7 +692,7 @@ router.post('/companydetails',function(req,res){
 router.post('/showeligible',function(req,res){
 	var companyId = req.body.id;
 	Company.getCompanyByid(companyId,function(err,company){
-		console.log(company.eligible_students.length);
+		//console.log(company.eligible_students.length);
 		var students = [];
 		for(var i = 0;i<company.eligible_students.length;i++)
 		{
@@ -691,6 +702,23 @@ router.post('/showeligible',function(req,res){
 			});
 		}
 		res.render('showEligibleStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
+	});
+});
+
+//show registered students
+router.post('/showregistered',function(req,res){
+	var companyId = req.body.id;
+	Company.getCompanyByid(companyId,function(err,company){
+		console.log(company.registered_students.length);
+		var students = [];
+		for(var i = 0;i<company.registered_students.length;i++)
+		{
+			User.getUserByEmail(company.registered_students[i],function(err,result){
+				students.push(result);
+				console.log(result);
+			});
+		}
+		res.render('showRegisteredStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
 	});
 });
 
