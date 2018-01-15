@@ -779,6 +779,12 @@ button:hover {
 #example{
   text-align: center;
   font-size: 0.75em;
+  margin-top: 20px;
+}
+#example thead tr{
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.2em;
 }
 /************Create Placement**************/
 .create{

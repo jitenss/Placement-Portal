@@ -723,5 +723,23 @@ router.post('/showregistered',function(req,res){
 		res.render('showRegisteredStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
 	});
 });
-
+//Set Offered Student
+router.post('/setOffered',function(req,res){
+	var companyId = req.body.id;
+	var studentList = req.body.studentList;
+	console.log(studentList);
+	Company.updateOfferedStudents(companyId,studentList,function(err,company){
+		var students = [];
+		for(var i = 0;i<studentList.length;i++)
+		{
+			User.getUserById(studentList[i],function(err,result){
+				students.push(result);
+				console.log("Finding Student By Email and set their offer");
+				console.log(result);
+			});
+		}
+		console.log(company);
+		res.render('showOfferedStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
+	});
+});
 module.exports = router;

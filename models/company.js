@@ -65,7 +65,9 @@ module.exports.getUserByOppurtunity = function(CurrUser,callback){
 module.exports.updateEligibleStudents = function(companyName,students,callback){
 	Company.update({name: companyName},{$set: {eligible_students: students}},callback);
 }
-
+module.exports.updateOfferedStudents = function(companyId,students,callback){
+	Company.update({_id: companyId},{$push: {offered: students}},callback);
+}
 module.exports.getAllCompanies = function(CurrUser,callback){
 	Company.find(callback);
 }
