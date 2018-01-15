@@ -335,6 +335,7 @@ router.get('/opportunitiesForAll', function(req, res){
 		res.render('opportunitiesForall',{result: result});
 	});
 });
+
 //opportunities for all Profile
 router.get('/applications', function(req, res){
 	console.log("On Aplications page");
@@ -389,7 +390,7 @@ router.post('/companyDetail2', function(req, res){
 			res.render('CompanyDetail2',{result:result,companyid: companyId});
 		}
 		else {
-			res.render('CompanyDetail2',{layout:'layoutb.handlebars',result:result});
+			res.render('companyDetailsAdmin',{layout:'layoutb.handlebars',result:result});
 		}
 		});
 });
@@ -447,6 +448,7 @@ router.get('/apply/:compId',function(req,res){
 		});
 	});
 });
+//----------Show Eligible Student List----------
 
 //to attch resume on opportunity for all
 router.get('/toapply', function(req, res){
@@ -516,21 +518,7 @@ router.get('/placements', function(req, res){
 		});
 });
 
-//Edit Event display
-router.post('/createEvent', function(req, res){
-	console.log("On Create Event Page");
-	var companyid = req.body.id;
-	User.getUserByLevel('student',function(err, result){
-		if(err) throw err;
-		//console.log("result aa gaya",companyid);
-		Company.getCompanyByid(companyid,function(err,result){
-			//console.log(result);
-			res.render('createEvent',{layout:'layoutb.handlebars',result:result});
-		});
-	});
-});
-
-//Create Event display 
+//Create Event display
 router.get('/createEvent', function(req, res){
 	console.log("On Create Event Page");
 	var companyid = req.body.id;
@@ -544,6 +532,19 @@ router.get('/createEvent', function(req, res){
 	});
 });
 
+//Edit Event display
+router.post('/createEvent', function(req, res){
+	console.log("On Create Event Page");
+	var companyid = req.body.id;
+	User.getUserByLevel('student',function(err, result){
+		if(err) throw err;
+		//console.log("result aa gaya",companyid);
+		Company.getCompanyByid(companyid,function(err,result){
+			//console.log(result);
+			res.render('createEvent',{layout:'layoutb.handlebars',result:result});
+		});
+	});
+});
 
 // var storage = multer.diskStorage({
 //   destination: function (req, file, cb) {
@@ -629,7 +630,7 @@ var upload = multer({
 
 //Comapany Attachments
 router.get('/companyattachments',function(req,res){
-	res.render('addCompanyAttachments');
+	res.render('addCompanyAttachments',{layout: 'layoutb.handlebars'});
 });
 
 //Company Attachments
@@ -684,6 +685,7 @@ router.get('/categories', function(req, res){
 router.post('/companydetails',function(req,res){
 	var companyId = req.body.compId;
 	Company.getCompanyByid(companyId,function(err,result){
+		console.log(companyId);
 		res.render('companyDetailsAdmin',{layout:'layoutb.handlebars',result:result,companyid: companyId});
 	});
 });
@@ -692,12 +694,12 @@ router.post('/companydetails',function(req,res){
 router.post('/showeligible',function(req,res){
 	var companyId = req.body.id;
 	Company.getCompanyByid(companyId,function(err,company){
-		//console.log(company.eligible_students.length);
 		var students = [];
 		for(var i = 0;i<company.eligible_students.length;i++)
 		{
 			User.getUserById(company.eligible_students[i],function(err,result){
 				students.push(result);
+				console.log("Yha Pahuch Gya !");
 				console.log(result);
 			});
 		}
