@@ -742,4 +742,13 @@ router.post('/setOffered',function(req,res){
 		res.render('showOfferedStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
 	});
 });
+
+//Display students details
+router.post('/viewstudent',function(req,res){
+	var id = req.body.student;
+	console.log(id);
+
+	res.render('showStudentDetails',{layout:'layoutb.handlebars',result:id});
+});
+
 module.exports = router;
