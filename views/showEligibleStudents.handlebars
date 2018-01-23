@@ -35,7 +35,12 @@
                 <td>
                   {{this.register_level}}
                 </td>
-                <td><button class="btn btn-sm btn-primary">View</button>
+                <td>
+                    <form action="/users/viewstudent" method="post">
+                        <input type="hidden" name="student" value="{{this._id}}"/>
+                        <button type="submit" class="btn btn-sm btn-primary">View</button>
+                    </form>
+                </td>
             </tr>
               {{/each}}
           </tbody>

@@ -294,7 +294,8 @@ router.post('/submit_academic',ensureAuthenticated, function(req,res){
 		},
 		backlogs : backlogs,
 		cpi: cpi,
-		register_level: 2
+		register_level: 2,
+		status: "active"
 	};
 	console.log(updatedDetails);
 	User.updateUsersAcademicProfile(currUser,updatedDetails,function(err,user){
@@ -748,7 +749,25 @@ router.post('/viewstudent',function(req,res){
 	var id = req.body.student;
 	console.log(id);
 
-	res.render('showStudentDetails',{layout:'layoutb.handlebars',result:id});
+	User.getUserById(id,function(err,result){
+		res.render('showStudentDetails',{layout:'layoutb.handlebars',result: result});
+	});
+});
+
+//Suspend Student
+router.post('/changeStatus',function(req,res){
+	var id = req.body.student;
+
+	User.getUserById(id,function(err,result){
+		if(err) throw err;
+
+		if(result.status=='active')
+			result.status = 'suspend';
+		else if(result.status=='suspend')
+			result.status = 'active';
+
+		console.log(result.status);
+	});
 });
 
 module.exports = router;
