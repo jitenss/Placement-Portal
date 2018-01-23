@@ -727,7 +727,7 @@ router.post('/showregistered',function(req,res){
 router.post('/setOffered',function(req,res){
 	var companyId = req.body.id;
 	var studentList = req.body.studentList;
-	console.log(studentList.length,"sdf");
+	console.log(studentList,"sdf");
 	Company.updateOfferedStudents(companyId,studentList,function(err,company){
 		var students = [];
 		for(var i = 0;i<studentList.length;i++)

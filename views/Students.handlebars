@@ -22,22 +22,22 @@
                 <td>{{this.name}}</td>
                 <td>B.TECH-{{this.branch}}</td>
                 <td>{{this.cpi}}</td>
-              
+
                 <td>{{this.cpi}}</td>
                 <td>{{this.backPapers}}</td>
                 <td>{{this.jobs}}</td>
                 <td>
                   {{this.register_level}}
                 </td>
-                
+
                 <td>
                     <form action="/users/viewstudent" method="post">
-                        <intput type="hidden" name="student" value="{{this._id}}"/>
+                        <input type="hidden" name="student" value="{{this.id}}"/>
                         <button type="submit" class="btn btn-sm btn-primary">View</button>
                     </form>
                         &nbsp;&nbsp;
                         <button class="btn btn-sm btn-danger">Debart</button>
-                    
+
                 </td>
             </tr>
               {{/each}}
