@@ -728,20 +728,34 @@ router.post('/showregistered',function(req,res){
 router.post('/setOffered',function(req,res){
 	var companyId = req.body.id;
 	var studentList = req.body.studentList;
-	console.log(studentList,"sdf");
-	Company.updateOfferedStudents(companyId,studentList,function(err,company){
-		var students = [];
-		for(var i = 0;i<studentList.length;i++)
+	var students = [];
+	console.log(studentList);
+	for(var i = 0;i<studentList.length;i++)
+	{
+		Company.updateOfferedStudents(companyId,studentList[i],function(err,result){});
+	}
+	for(var i = 0;i<studentList.length;i++)
+	{
+		console.log(studentList[i],"ftfyf");
+		User.UpdateStudentOffers(studentList[i],companyId,function(err,result){
+			console.log(result);
+		});
+	}
+
+	Company.getCompanyByid(companyId,function(err,company){
+		console.log(company,"Iske baad students print krega !!!");
+		for(var i = 0;i<company.offered.length;i++)
 		{
-			User.getUserByEmail(studentList[i],function(err,result){
-				students.push(result);
-				//console.log("Finding Student By Email and set their offer");
-				//console.log(result);
+			//console.log(company.offered[i]);
+			User.getUserByEmail( company.offered[i] ,function(err,student){
+				console.log(student,"Yha pr student Milega !");
+				students.push(student);
 			});
 		}
-		//console.log(company);
-		res.render('showOfferedStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
+
 	});
+	console.log(students.length);
+	res.render('showOfferedStudents',{layout:'layoutb.handlebars', result:students, companyid:companyId});
 });
 
 //Display students details

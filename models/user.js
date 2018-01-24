@@ -83,7 +83,15 @@ module.exports.getUserByLevel = function(user_level,callback){
 module.exports.getUserByEmail = function(email,callback){
 	console.log("Finding User By Email");
 	var query = {email: email};
+	console.log(query);
 	User.findOne(query,callback);
+}
+
+module.exports.UpdateStudentOffers = function(email,compId,callback){
+	console.log("Finding User By Email and updating Student Offers");
+	var query = {email: email};
+	console.log(query);
+	User.update(query,{$push: {offers: compId}},callback);
 }
 
 module.exports.getUserById = function(id,callback){
